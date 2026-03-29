@@ -1,18 +1,16 @@
-// DURAMEN — Service Worker
+// DURAMEN — Service Worker v2
 // Permet le fonctionnement hors ligne et la mise en cache
-
-const CACHE_NAME = 'duramen-v1';
+const CACHE_NAME = 'duramen-v2';
 const ASSETS = [
   './duramen.html',
   './manifest.json',
-  'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap'
+  'https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap'
 ];
 
 // Installation : mise en cache des ressources statiques
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      // On met en cache ce qu'on peut, on ignore les erreurs réseau
       return Promise.allSettled(ASSETS.map(url => cache.add(url)));
     }).then(() => self.skipWaiting())
   );
@@ -29,21 +27,17 @@ self.addEventListener('activate', event => {
 
 // Fetch : stratégie Cache First, puis réseau
 self.addEventListener('fetch', event => {
-  // On ignore les requêtes non-GET
   if (event.request.method !== 'GET') return;
-
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
       return fetch(event.request).then(response => {
-        // On met en cache les nouvelles ressources valides
         if (response && response.status === 200 && response.type !== 'opaque') {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }
         return response;
       }).catch(() => {
-        // Fallback hors ligne : renvoyer la page principale
         if (event.request.destination === 'document') {
           return caches.match('./duramen.html');
         }
