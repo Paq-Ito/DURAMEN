@@ -86,7 +86,6 @@ header::after {
   z-index: 2;
 }
 
-/* Logo mark — transparent, logo Duramen en craie */
 .logo-mark {
   flex-shrink: 0;
   width: 64px; height: 64px;
@@ -99,7 +98,7 @@ header::after {
   opacity: 0.9;
 }
 
-.header-title { flex: 1; }
+.header-title { flex: 1; min-width: 0; }
 
 .title-duramen {
   font-family: var(--font-display);
@@ -136,6 +135,7 @@ header::after {
 }
 
 .header-right { text-align: right; flex-shrink: 0; }
+.header-stats-mobile { display: none; }
 .stat-pill {
   background: rgba(201,186,163,0.08);
   border: 1px solid rgba(201,186,163,0.18);
@@ -154,7 +154,7 @@ header::after {
   letter-spacing: -0.02em;
 }
 
-/* ─── TABS ─── */
+/* ─── TABS desktop ─── */
 .tabs-wrap {
   background: var(--encre);
   border-bottom: var(--border);
@@ -181,13 +181,44 @@ header::after {
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
   transition: all 0.15s;
+  white-space: nowrap;
 }
 .tab:hover { color: var(--craie); }
-.tab.active {
-  color: var(--craie);
-  border-bottom-color: var(--signal);
+.tab.active { color: var(--craie); border-bottom-color: var(--signal); }
+.tab .tab-icon { font-size: 0.85rem; flex-shrink: 0; }
+
+/* ─── BOTTOM NAV mobile ─── */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--encre);
+  border-top: 1px solid rgba(201,186,163,0.15);
+  z-index: 50;
+  padding-bottom: env(safe-area-inset-bottom);
 }
-.tab .tab-icon { font-size: 0.85rem; }
+.bottom-nav-inner { display: flex; justify-content: space-around; }
+.bnav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 4px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--cendre);
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.bnav-btn svg { width: 22px; height: 22px; }
+.bnav-btn.active { color: var(--craie); }
+.bnav-btn.active svg { color: var(--signal); }
 
 /* ─── MAIN ─── */
 main {
@@ -197,6 +228,35 @@ main {
 }
 .panel { display: none; }
 .panel.active { display: block; }
+
+/* ══════════════════════
+   MOBILE
+══════════════════════ */
+@media (max-width: 600px) {
+  .header-inner { padding: 12px 14px 10px; gap: 10px; }
+  .logo-mark { width: 42px; height: 42px; }
+  .logo-mark svg { width: 42px; height: 42px; }
+  .title-duramen { font-size: 1.2rem; }
+  .title-sub { display: none; }
+  .title-tc { font-size: 0.6rem; margin-top: 4px; letter-spacing: 0.06em; }
+  .header-right { display: none; }
+  .header-stats-mobile {
+    display: flex !important;
+    gap: 6px;
+    padding: 0 14px 10px;
+    background: var(--encre);
+  }
+  .header-stats-mobile .stat-pill {
+    flex: 1; text-align: center; margin-bottom: 0; font-size: 0.62rem; padding: 4px 6px;
+  }
+  .tabs-wrap { display: none; }
+  .bottom-nav { display: block; }
+  main { padding: 14px 12px 84px; }
+  .card { padding: 14px 13px; }
+  .card-title { font-size: 0.65rem; }
+  .step-indicator { gap: 5px; }
+  .step { font-size: 0.6rem; }
+}
 
 /* ─── CARD ─── */
 .card {
@@ -764,6 +824,13 @@ footer span { color: var(--lin); font-family: var(--font-display); font-weight: 
   </div>
 </header>
 
+<!-- ─── STATS MOBILE ─── -->
+<div class="header-stats-mobile">
+  <div class="stat-pill">Stock : <strong id="hs-vol-m">—</strong> m³</div>
+  <div class="stat-pill"><strong id="hs-lots-m">—</strong> lots</div>
+  <div class="stat-pill"><strong id="hs-essences-m">—</strong> essences</div>
+</div>
+
 <!-- ─── TABS ─── -->
 <div class="tabs-wrap">
   <div class="tabs">
@@ -793,6 +860,28 @@ footer span { color: var(--lin); font-family: var(--font-display); font-weight: 
     </button>
   </div>
 </div>
+
+<!-- ─── BOTTOM NAV mobile ─── -->
+<nav class="bottom-nav" aria-label="Navigation principale">
+  <div class="bottom-nav-inner">
+    <button class="bnav-btn active" onclick="switchTab('saisie',this)" data-panel="saisie">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Nouveau
+    </button>
+    <button class="bnav-btn" onclick="switchTab('stock',this)" data-panel="stock">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
+      Stock
+    </button>
+    <button class="bnav-btn" onclick="switchTab('extraction',this)" data-panel="extraction">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Extractions
+    </button>
+    <button class="bnav-btn" onclick="switchTab('historique',this)" data-panel="historique">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="18" x2="14" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Historique
+    </button>
+  </div>
+</nav>
 
 <main>
 
@@ -1128,7 +1217,10 @@ function sauver() {
 function switchTab(panel, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.bnav-btn').forEach(t => t.classList.remove('active'));
   document.getElementById('panel-' + panel).classList.add('active');
+  // Sync both desktop tabs and mobile bottom nav
+  document.querySelectorAll('[data-panel="' + panel + '"]').forEach(el => el.classList.add('active'));
   btn.classList.add('active');
   if (panel === 'stock')      afficherStock();
   if (panel === 'extraction') afficherExtractions();
@@ -1580,6 +1672,13 @@ function mettreAJourHeaderStats() {
   document.getElementById('hs-vol').textContent      = totalDispo.toFixed(2);
   document.getElementById('hs-lots').textContent     = lots.length;
   document.getElementById('hs-essences').textContent = nbEssences;
+  // Mobile stats
+  const vm = document.getElementById('hs-vol-m');
+  const lm = document.getElementById('hs-lots-m');
+  const em = document.getElementById('hs-essences-m');
+  if (vm) vm.textContent = totalDispo.toFixed(2);
+  if (lm) lm.textContent = lots.length;
+  if (em) em.textContent = nbEssences;
 }
 
 // ═══════════ INIT ═══════════
