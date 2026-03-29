@@ -795,27 +795,31 @@ footer span { color: var(--brun-clair); }
   <div class="header-inner">
     <div class="logo-mark">
       <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <!-- Bosquet : groupe de 3 arbres printaniers -->
-        <!-- Arbre gauche (petit) -->
-        <rect x="9" y="44" width="5" height="14" rx="1.5" fill="#a8d98f" opacity="0.8"/>
-        <polygon points="11.5,16 21,36 2,36" fill="#6abf5e"/>
-        <polygon points="11.5,22 19,38 4,38" fill="#43a047"/>
-        <!-- Arbre droit (petit) -->
-        <rect x="50" y="44" width="5" height="14" rx="1.5" fill="#a8d98f" opacity="0.8"/>
-        <polygon points="52.5,18 62,38 43,38" fill="#6abf5e"/>
-        <polygon points="52.5,24 60,40 45,40" fill="#43a047"/>
-        <!-- Arbre central (grand) -->
-        <rect x="28" y="40" width="8" height="18" rx="2" fill="#a8d98f"/>
-        <polygon points="32,4 46,28 18,28" fill="#81c784"/>
-        <polygon points="32,12 44,32 20,32" fill="#4caf50"/>
-        <polygon points="32,20 42,38 22,38" fill="#388e3c"/>
-        <!-- Fleurs printanières sur l'arbre central -->
-        <circle cx="26" cy="20" r="2.2" fill="#f06292" opacity="0.85"/>
-        <circle cx="38" cy="16" r="1.8" fill="#fdd835" opacity="0.85"/>
-        <circle cx="34" cy="26" r="1.6" fill="#f06292" opacity="0.7"/>
-        <circle cx="24" cy="29" r="1.4" fill="#fdd835" opacity="0.7"/>
-        <!-- Sol herbeux -->
-        <ellipse cx="32" cy="60" rx="28" ry="4" fill="#c8e6c9" opacity="0.5"/>
+        <!-- D1 — Coupe anatomique du duramen -->
+        <!-- Écorce -->
+        <circle cx="32" cy="32" r="30" fill="#5c3d1e"/>
+        <!-- Liber -->
+        <circle cx="32" cy="32" r="24" fill="#c4874a"/>
+        <!-- Aubier -->
+        <circle cx="32" cy="32" r="18" fill="#e8b87a"/>
+        <!-- Duramen -->
+        <circle cx="32" cy="32" r="12" fill="#7a3e1a"/>
+        <!-- Moelle -->
+        <circle cx="32" cy="32" r="3.5" fill="#3d1e0a"/>
+        <!-- Cernes annuels -->
+        <circle cx="32" cy="32" r="6.5" fill="none" stroke="#5c3010" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="32" cy="32" r="9.5" fill="none" stroke="#5c3010" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="32" cy="32" r="15"  fill="none" stroke="#8b5a2a" stroke-width="0.6" opacity="0.4"/>
+        <circle cx="32" cy="32" r="21"  fill="none" stroke="#8b5a2a" stroke-width="0.5" opacity="0.3"/>
+        <!-- Rayons médullaires -->
+        <line x1="32" y1="20" x2="32" y2="3"  stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
+        <line x1="32" y1="44" x2="32" y2="61" stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
+        <line x1="20" y1="32" x2="3"  y2="32" stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
+        <line x1="44" y1="32" x2="61" y2="32" stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
+        <line x1="23" y1="23" x2="10" y2="10" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
+        <line x1="41" y1="41" x2="54" y2="54" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
+        <line x1="41" y1="23" x2="54" y2="10" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
+        <line x1="23" y1="41" x2="10" y2="54" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
       </svg>
     </div>
     <div class="header-title">
