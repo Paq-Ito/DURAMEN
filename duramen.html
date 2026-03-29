@@ -2,227 +2,227 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DURAMEN — Tronc Commun</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1A1814">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="DURAMEN">
-<meta name="theme-color" content="#2d5a27">
-<meta name="description" content="Gestion du stock de bois d'œuvre issu des arbres du territoire">
-<title>DURAMEN — Tronc Commun</title>
-<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════
+   DESIGN SYSTEM — Duramen / theme.js
+═══════════════════════════════════════ */
 :root {
-  --noir:       #1e2d1a;
-  --ecorce:     #2d5a27;
-  --brun:       #4a8c3f;
-  --brun-med:   #6abf5e;
-  --brun-clair: #a8d98f;
-  --creme:      #f0fae8;
-  --creme-sombre: #d8f0c4;
-  --blanc:      #f7fdf2;
-  --vert:       #2e7d32;
-  --vert-med:   #43a047;
-  --vert-clair: #81c784;
-  --vert-pale:  #c8e6c9;
-  --rouge:      #e53935;
-  --orange:     #f57c00;
-  --gris:       #6a7f62;
-  --gris-clair: #c5dbb8;
-  --ombre:      rgba(30,45,26,0.13);
-  --ombre-med:  rgba(30,45,26,0.22);
-  /* Spring accent colors */
-  --printemps-rose:    #f06292;
-  --printemps-jaune:   #fdd835;
-  --printemps-lilas:   #ba68c8;
-  --printemps-ciel:    #4fc3f7;
-  --printemps-peche:   #ffb74d;
+  --craie:        #F2EDE4;
+  --sable:        #E0D5C4;
+  --lin:          #C9BAA3;
+  --cendre:       #7A7469;
+  --encre:        #1A1814;
+  --signal:       #4B6FBF;
+  --signal-clair: #D4DCF2;
+  --rouge:        #c0392b;
+  --orange:       #d35400;
+
+  --font-display: 'Unbounded', sans-serif;
+  --font-serif:   'Instrument Serif', serif;
+  --font-sans:    'DM Sans', sans-serif;
+
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 8px;
+
+  --border:        1.5px solid var(--encre);
+  --border-light:  1px solid var(--lin);
+  --border-signal: 1.5px solid var(--signal);
+
+  --shadow-sm: 0 1px 4px rgba(26,24,20,0.08);
+  --shadow-md: 0 4px 16px rgba(26,24,20,0.12);
+  --shadow-lg: 0 12px 40px rgba(26,24,20,0.18);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--creme);
-  color: var(--ecorce);
+  font-family: var(--font-sans);
+  background: var(--craie);
+  color: var(--encre);
   min-height: 100vh;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.7;
 }
 
 /* ─── HEADER ─── */
 header {
-  background: linear-gradient(135deg, #2d5a27 0%, #3d7a35 50%, #2e7d32 100%);
+  background: var(--encre);
   position: relative;
   overflow: hidden;
-  padding: 0;
-  border-bottom: 4px solid var(--brun-clair);
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--signal) 0%, var(--lin) 50%, transparent 100%);
 }
 
 .header-inner {
-  max-width: 1100px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 24px 32px 20px;
+  padding: 20px 32px 18px;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   position: relative;
   z-index: 2;
 }
 
-/* Decorative spring blossom pattern */
-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 20% 50%, rgba(168,217,143,0.08) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 30%, rgba(240,98,146,0.06) 0%, transparent 50%),
-              radial-gradient(ellipse at 60% 80%, rgba(253,216,53,0.05) 0%, transparent 40%);
-  z-index: 1;
-}
-
+/* Logo mark — transparent, logo Duramen en craie */
 .logo-mark {
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-  position: relative;
+  width: 64px; height: 64px;
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
 }
-.logo-mark svg { width: 100%; height: 100%; }
+.logo-mark svg {
+  width: 64px; height: 64px;
+  color: var(--craie);
+  opacity: 0.9;
+}
 
 .header-title { flex: 1; }
 
 .title-duramen {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
   font-weight: 900;
-  color: var(--creme);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  color: var(--craie);
+  letter-spacing: -0.02em;
   line-height: 1;
-  /* Rough woodcut feel */
-  text-shadow: 2px 2px 0 rgba(0,0,0,0.4), -1px -1px 0 rgba(196,154,108,0.2);
 }
 .title-sub {
-  font-family: 'Crimson Text', serif;
-  font-size: 0.88rem;
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
   font-style: italic;
-  color: var(--brun-clair);
-  letter-spacing: 0.06em;
-  margin-top: 4px;
+  color: var(--cendre);
+  letter-spacing: 0.02em;
+  margin-top: 5px;
+  line-height: 1.4;
 }
 .title-tc {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.72rem;
-  color: var(--vert-clair);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--signal);
+  font-weight: 400;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: flex; align-items: center; gap: 8px;
 }
 .title-tc::before {
   content: '';
   display: inline-block;
-  width: 20px;
-  height: 1px;
-  background: var(--vert-clair);
+  width: 16px; height: 1px;
+  background: var(--signal);
 }
 
-.header-right {
-  text-align: right;
+.header-right { text-align: right; flex-shrink: 0; }
+.stat-pill {
+  background: rgba(201,186,163,0.08);
+  border: 1px solid rgba(201,186,163,0.18);
+  border-radius: var(--r-sm);
+  padding: 5px 12px;
+  margin-bottom: 5px;
+  font-size: 0.72rem;
+  color: var(--cendre);
+  letter-spacing: 0.06em;
 }
-.header-right .stat-pill {
-  background: rgba(244,240,230,0.1);
-  border: 1px solid rgba(196,154,108,0.3);
-  border-radius: 6px;
-  padding: 6px 14px;
-  margin-bottom: 6px;
-  font-size: 0.78rem;
-  color: var(--brun-clair);
-}
-.header-right .stat-pill strong {
-  color: var(--creme);
-  font-size: 1rem;
-  font-family: 'Playfair Display', serif;
+.stat-pill strong {
+  color: var(--craie);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* ─── TABS ─── */
 .tabs-wrap {
-  background: linear-gradient(135deg, #2d5a27 0%, #3d7a35 100%);
-  border-bottom: 3px solid var(--brun-clair);
+  background: var(--encre);
+  border-bottom: var(--border);
 }
 .tabs {
   display: flex;
-  max-width: 1100px;
+  max-width: 1160px;
   margin: 0 auto;
   padding: 0 32px;
-  gap: 2px;
+  gap: 0;
 }
 .tab {
-  padding: 11px 22px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--brun-clair);
-  border-radius: 8px 8px 0 0;
-  transition: all 0.2s;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--cendre);
   border: none;
   background: none;
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 7px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
 }
-.tab:hover { background: rgba(255,255,255,0.07); color: var(--creme); }
+.tab:hover { color: var(--craie); }
 .tab.active {
-  background: var(--creme);
-  color: var(--ecorce);
+  color: var(--craie);
+  border-bottom-color: var(--signal);
 }
-.tab .tab-icon { font-size: 1rem; }
+.tab .tab-icon { font-size: 0.85rem; }
 
 /* ─── MAIN ─── */
 main {
-  max-width: 1100px;
+  max-width: 1160px;
   margin: 0 auto;
   padding: 28px 20px 80px;
 }
-
 .panel { display: none; }
 .panel.active { display: block; }
 
 /* ─── CARD ─── */
 .card {
-  background: var(--blanc);
-  border-radius: 12px;
-  padding: 26px 28px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 10px var(--ombre);
-  border: 1px solid rgba(196,154,108,0.2);
+  background: #fff;
+  border-radius: var(--r-lg);
+  padding: 24px 26px;
+  margin-bottom: 16px;
+  border: var(--border-light);
+  box-shadow: var(--shadow-sm);
 }
 .card-title {
-  font-family: 'Crimson Text', serif;
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--brun);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--encre);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
+  display: flex; align-items: center; gap: 9px;
   padding-bottom: 12px;
-  border-bottom: 1.5px solid var(--creme-sombre);
+  border-bottom: var(--border-light);
 }
-.card-title .icon { font-size: 1.1rem; }
+.card-title .icon { font-size: 0.9rem; }
 
 /* ─── FORM ─── */
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
 .form-grid.four  { grid-template-columns: 1fr 1fr 1fr 1fr; }
 .form-grid.full  { grid-template-columns: 1fr; }
@@ -230,439 +230,410 @@ main {
   .form-grid,.form-grid.three,.form-grid.four { grid-template-columns: 1fr; }
 }
 
-.field { display: flex; flex-direction: column; gap: 5px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
 .field label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--gris);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--cendre);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.13em;
 }
 .field input, .field select, .field textarea {
-  padding: 9px 13px;
-  border: 1.5px solid var(--gris-clair);
-  border-radius: 7px;
-  font-size: 0.92rem;
-  font-family: 'DM Sans', sans-serif;
-  background: var(--blanc);
-  color: var(--ecorce);
-  transition: border-color 0.2s, background 0.2s;
+  padding: 9px 0;
+  border: none;
+  border-bottom: var(--border);
+  border-radius: 0;
+  font-size: 0.88rem;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  background: transparent;
+  color: var(--encre);
+  transition: border-color 0.2s;
   outline: none;
   appearance: none;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-  border-color: var(--brun-med);
-  background: var(--creme);
+  border-bottom-color: var(--signal);
 }
-.field textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+.field textarea { resize: vertical; min-height: 70px; line-height: 1.5; border: var(--border); border-radius: var(--r-md); padding: 9px 12px; }
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%237a6f5e'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237A7469'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 32px;
+  background-position: right 4px center;
+  padding-right: 22px;
+  cursor: pointer;
 }
 
 /* ─── BUTTONS ─── */
 .btn {
-  padding: 10px 22px;
-  border: none;
-  border-radius: 7px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 600;
+  padding: 10px 20px;
+  border: var(--border);
+  border-radius: var(--r-sm);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.18s;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+  transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent;
+  color: var(--encre);
 }
-.btn-primary { background: var(--ecorce); color: var(--creme); }
-.btn-primary:hover { background: var(--noir); transform: translateY(-1px); box-shadow: 0 4px 12px var(--ombre-med); }
+.btn:hover { background: var(--sable); }
 
-.btn-success { background: var(--vert); color: white; }
-.btn-success:hover { background: #223822; transform: translateY(-1px); }
+.btn-primary {
+  background: var(--encre);
+  color: var(--craie);
+  border-color: var(--encre);
+}
+.btn-primary:hover { background: #000; }
 
-.btn-orange { background: var(--orange); color: white; }
-.btn-orange:hover { background: #a34d10; transform: translateY(-1px); }
+.btn-signal {
+  background: var(--signal);
+  color: #fff;
+  border-color: var(--signal);
+}
+.btn-signal:hover { background: #3a5aaa; border-color: #3a5aaa; }
 
-.btn-danger { background: transparent; color: var(--rouge); border: 1.5px solid var(--rouge); padding: 5px 11px; font-size: 0.78rem; }
+.btn-success {
+  background: var(--encre);
+  color: var(--craie);
+  border-color: var(--encre);
+}
+.btn-success:hover { background: #000; }
+
+.btn-orange {
+  background: var(--encre);
+  color: var(--craie);
+  border-color: var(--encre);
+}
+.btn-orange:hover { background: #000; }
+
+.btn-danger {
+  background: transparent;
+  color: var(--rouge);
+  border: 1.5px solid var(--rouge);
+  padding: 5px 10px;
+  font-size: 0.65rem;
+}
 .btn-danger:hover { background: var(--rouge); color: white; }
 
-.btn-outline { background: transparent; color: var(--brun); border: 1.5px solid var(--brun); }
-.btn-outline:hover { background: var(--creme-sombre); }
+.btn-outline {
+  background: transparent;
+  color: var(--encre);
+  border: var(--border);
+}
+.btn-outline:hover { background: var(--sable); }
 
-.btn-sm { padding: 5px 12px; font-size: 0.78rem; }
+.btn-sm { padding: 5px 12px; font-size: 0.65rem; }
 
 /* ─── GRUMES LIST ─── */
 .grume-item {
-  background: #faf5ec;
-  border: 1.5px solid var(--brun-clair);
-  border-radius: 9px;
-  padding: 13px 16px;
-  margin-bottom: 9px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  background: var(--craie);
+  border: var(--border-light);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
 }
 .grume-num {
-  background: var(--ecorce);
-  color: var(--creme);
+  background: var(--encre);
+  color: var(--craie);
   border-radius: 50%;
-  width: 28px; height: 28px;
+  width: 26px; height: 26px;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.68rem;
   flex-shrink: 0;
 }
 .grume-info { flex: 1; display: flex; gap: 16px; flex-wrap: wrap; }
 .grume-field { display: flex; flex-direction: column; gap: 2px; }
-.grume-field span:first-child { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gris); font-weight: 600; }
-.grume-field span:last-child { font-size: 0.92rem; font-weight: 500; }
+.grume-field span:first-child { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.13em; color: var(--cendre); }
+.grume-field span:last-child { font-size: 0.88rem; font-weight: 400; }
 
 /* ─── RESULTS ─── */
 .result-block {
-  background: linear-gradient(135deg, #2d5a27 0%, #3d7a35 100%);
-  color: var(--creme);
-  border-radius: 12px;
-  padding: 24px 28px;
-  margin-bottom: 20px;
+  background: var(--encre);
+  color: var(--craie);
+  border-radius: var(--r-lg);
+  padding: 24px 26px;
+  margin-bottom: 16px;
   position: relative;
   overflow: hidden;
 }
 .result-block::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(168,217,143,0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 80% 20%, rgba(75,111,191,0.1) 0%, transparent 60%);
+  pointer-events: none;
 }
 .result-block > * { position: relative; z-index: 1; }
 .result-block h3 {
-  font-family: 'Crimson Text', serif;
-  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
   margin-bottom: 18px;
-  color: var(--brun-clair);
+  color: var(--lin);
   display: flex; align-items: center; gap: 8px;
 }
 .result-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
 }
 .result-stat {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(196,154,108,0.2);
-  border-radius: 9px;
+  background: rgba(201,186,163,0.06);
+  border: 1px solid rgba(201,186,163,0.15);
+  border-radius: var(--r-md);
   padding: 14px 16px;
   text-align: center;
 }
 .result-stat .val {
-  font-size: 1.7rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
   font-weight: 700;
-  font-family: 'Playfair Display', serif;
-  color: var(--brun-clair);
+  color: var(--craie);
   line-height: 1;
+  letter-spacing: -0.03em;
 }
-.result-stat .unit { font-size: 0.72rem; color: var(--vert-clair); margin-top: 4px; }
-.result-stat .lbl { font-size: 0.72rem; color: rgba(244,240,230,0.55); margin-top: 6px; }
+.result-stat .unit { font-size: 0.62rem; color: var(--signal); margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+.result-stat .lbl { font-size: 0.62rem; color: rgba(242,237,228,0.45); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.1em; }
 
 .dechets-block {
-  background: rgba(139,37,0,0.18);
-  border: 1px solid rgba(139,37,0,0.4);
-  border-radius: 9px;
-  padding: 13px 16px;
+  background: rgba(192,57,43,0.12);
+  border: 1px solid rgba(192,57,43,0.3);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
   margin-top: 14px;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.82rem;
 }
-.dechets-block .txt { font-size: 0.87rem; line-height: 1.5; }
 .dechets-block strong { color: #e8a090; }
 
 /* ─── TABLE ─── */
 .table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
 th {
-  background: linear-gradient(135deg, #2d5a27 0%, #43a047 100%);
-  color: #d8f0c4;
-  padding: 10px 12px;
+  background: var(--encre);
+  color: var(--lin);
+  padding: 9px 12px;
   text-align: left;
-  font-size: 0.72rem;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 600;
+  letter-spacing: 0.13em;
+  font-weight: 400;
 }
-th:first-child { border-radius: 7px 0 0 0; }
-th:last-child { border-radius: 0 7px 0 0; }
-td { padding: 10px 12px; border-bottom: 1px solid var(--creme-sombre); }
+th:first-child { border-radius: var(--r-md) 0 0 0; }
+th:last-child { border-radius: 0 var(--r-md) 0 0; }
+td { padding: 9px 12px; border-bottom: 1px solid var(--sable); }
 tr:last-child td { border-bottom: none; }
-tr:hover td { background: #faf5ec; }
+tr:hover td { background: var(--craie); }
 
 /* ─── BADGE ─── */
 .badge {
   display: inline-block;
-  padding: 3px 9px;
-  border-radius: 20px;
-  font-size: 0.72rem;
-  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
 }
-.badge-int    { background: #dde8f5; color: #2a5298; }
-.badge-ext    { background: var(--vert-pale); color: var(--vert); }
-.badge-struct { background: #f5e8dd; color: var(--brun); }
-.badge-mob    { background: #f0e8f5; color: #5a2a7a; }
-.badge-autre  { background: var(--creme-sombre); color: var(--gris); }
+.badge-int    { background: var(--signal-clair); color: var(--signal); }
+.badge-ext    { background: var(--sable); color: var(--encre); }
+.badge-struct { background: var(--encre); color: var(--craie); }
+.badge-mob    { background: var(--lin); color: var(--encre); }
+.badge-autre  { background: var(--sable); color: var(--cendre); }
 
-/* ─── HISTORIQUE CARDS ─── */
+/* ─── LOT CARDS ─── */
 .lot-card {
-  background: var(--blanc);
-  border-radius: 10px;
-  border: 1.5px solid var(--gris-clair);
-  padding: 18px 20px;
-  margin-bottom: 12px;
-  transition: all 0.2s;
+  background: #fff;
+  border-radius: var(--r-md);
+  border: var(--border-light);
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  transition: all 0.15s;
 }
-.lot-card:hover { border-color: var(--brun-clair); box-shadow: 0 3px 10px var(--ombre); }
+.lot-card:hover { border-color: var(--encre); box-shadow: var(--shadow-sm); }
 .lot-card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
-.lot-card-title { font-family: 'Crimson Text', serif; font-size: 1.05rem; font-weight: 600; color: var(--ecorce); }
-.lot-card-meta { font-size: 0.78rem; color: var(--gris); margin-top: 3px; }
+.lot-card-title { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: -0.01em; color: var(--encre); }
+.lot-card-meta { font-size: 0.75rem; color: var(--cendre); margin-top: 3px; }
 .lot-card-stats { display: flex; gap: 14px; margin-top: 11px; flex-wrap: wrap; }
-.lot-stat { font-size: 0.8rem; }
-.lot-stat strong { color: var(--brun); }
+.lot-stat { font-size: 0.78rem; color: var(--cendre); }
+.lot-stat strong { color: var(--encre); }
 
-/* ─── STOCK SUMMARY TABLE ─── */
+/* ─── STOCK ─── */
 .stock-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
 }
 .stock-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 700;
-  color: var(--ecorce);
+  letter-spacing: -0.02em;
+  color: var(--encre);
 }
 .stock-subtitle {
-  font-family: 'Crimson Text', serif;
+  font-family: var(--font-serif);
   font-style: italic;
-  color: var(--gris);
+  color: var(--cendre);
   font-size: 0.9rem;
   margin-top: 2px;
 }
 
 .essence-row {
-  background: var(--blanc);
-  border-radius: 10px;
-  border: 1.5px solid var(--gris-clair);
-  padding: 16px 20px;
-  margin-bottom: 10px;
-  transition: all 0.2s;
+  background: #fff;
+  border-radius: var(--r-md);
+  border: var(--border-light);
+  padding: 14px 18px;
+  margin-bottom: 8px;
+  transition: all 0.15s;
 }
-.essence-row:hover { border-color: var(--brun-clair); }
-.essence-row-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
+.essence-row:hover { border-color: var(--encre); }
+.essence-row-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .essence-name {
-  font-family: 'Crimson Text', serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  flex: 1;
-  min-width: 120px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.essence-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.essence-stats {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.essence-stat {
-  text-align: center;
-  min-width: 70px;
-}
-.essence-stat .es-val {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--ecorce);
+  flex: 1; min-width: 120px;
+  display: flex; align-items: center; gap: 8px;
+  letter-spacing: -0.01em;
 }
-.essence-stat .es-lbl {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--gris);
-  font-weight: 600;
-}
-.essence-bar-wrap {
-  height: 5px;
-  background: var(--creme-sombre);
-  border-radius: 3px;
-  margin-top: 12px;
-  overflow: hidden;
-}
-.essence-bar {
-  height: 100%;
-  border-radius: 3px;
-  background: var(--brun-med);
-  transition: width 0.5s ease;
-}
+.essence-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.essence-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.essence-stat { text-align: center; min-width: 70px; }
+.essence-stat .es-val { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--encre); letter-spacing: -0.02em; }
+.essence-stat .es-lbl { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.13em; color: var(--cendre); }
+.essence-bar-wrap { height: 3px; background: var(--sable); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+.essence-bar { height: 100%; border-radius: 2px; background: var(--encre); transition: width 0.5s ease; }
 
 .stock-total-card {
-  background: linear-gradient(135deg, #2d5a27 0%, #43a047 100%);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+  background: var(--encre);
+  border-radius: var(--r-md);
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+  position: relative; overflow: hidden;
 }
 .stock-total-card::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(253,216,53,0.07) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 80% 50%, rgba(75,111,191,0.12) 0%, transparent 60%);
+  pointer-events: none;
 }
 .stock-total-card > * { position: relative; z-index: 1; }
-.stock-total-item {
-  text-align: center;
-  flex: 1;
-  min-width: 100px;
-}
-.stock-total-item .tv { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--brun-clair); line-height: 1; }
-.stock-total-item .tu { font-size: 0.75rem; color: var(--vert-clair); margin-top: 3px; }
-.stock-total-item .tl { font-size: 0.72rem; color: rgba(244,240,230,0.5); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
-.stock-divider { width: 1px; background: rgba(196,154,108,0.2); align-self: stretch; min-height: 50px; }
+.stock-total-item { text-align: center; flex: 1; min-width: 100px; }
+.stock-total-item .tv { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--craie); line-height: 1; letter-spacing: -0.03em; }
+.stock-total-item .tu { font-size: 0.62rem; color: var(--signal); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.1em; }
+.stock-total-item .tl { font-size: 0.62rem; color: rgba(201,186,163,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+.stock-divider { width: 1px; background: rgba(201,186,163,0.1); align-self: stretch; min-height: 50px; }
 
-/* ─── EXTRACTION MODULE ─── */
+/* ─── MODAL ─── */
 .extract-modal-bg {
   display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(26,20,16,0.65);
+  position: fixed; inset: 0;
+  background: rgba(26,24,20,0.7);
   z-index: 100;
-  align-items: center;
-  justify-content: center;
+  align-items: center; justify-content: center;
   padding: 20px;
 }
 .extract-modal-bg.open { display: flex; }
 .extract-modal {
-  background: var(--blanc);
-  border-radius: 14px;
-  padding: 30px 32px;
-  max-width: 580px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  border-top: 4px solid var(--brun-clair);
+  background: var(--craie);
+  border-radius: var(--r-lg);
+  padding: 28px 30px;
+  max-width: 580px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  border-top: 3px solid var(--encre);
 }
 .extract-modal h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: var(--ecorce);
-  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--encre);
+  margin-bottom: 4px;
 }
 .extract-modal .modal-sub {
-  font-family: 'Crimson Text', serif;
+  font-family: var(--font-serif);
   font-style: italic;
-  color: var(--gris);
-  font-size: 0.9rem;
+  color: var(--cendre);
+  font-size: 0.88rem;
   margin-bottom: 22px;
 }
 .extract-modal .modal-close {
   float: right;
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: var(--gris);
-  margin-top: -4px;
+  background: none; border: none;
+  font-size: 1.2rem;
+  cursor: pointer; color: var(--cendre); margin-top: -4px;
 }
-.extract-modal .modal-close:hover { color: var(--rouge); }
+.extract-modal .modal-close:hover { color: var(--encre); }
 
-.extraction-list {
-  margin-top: 20px;
-}
+/* ─── EXTRACTION LIST ─── */
+.extraction-list { margin-top: 16px; }
 .extraction-item {
-  background: var(--creme);
-  border: 1.5px solid var(--gris-clair);
-  border-radius: 9px;
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  position: relative;
-}
-.extraction-item .ei-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  background: #fff;
+  border: var(--border-light);
+  border-radius: var(--r-md);
+  padding: 13px 16px;
   margin-bottom: 8px;
 }
-.extraction-item .ei-title {
-  font-family: 'Crimson Text', serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ecorce);
-}
-.extraction-item .ei-meta {
-  font-size: 0.78rem;
-  color: var(--gris);
-  margin-top: 2px;
-}
-.extraction-item .ei-stats {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid var(--gris-clair);
-}
-.extraction-item .ei-stat {
-  font-size: 0.78rem;
-}
-.extraction-item .ei-stat strong { color: var(--brun); }
+.extraction-item .ei-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 7px; }
+.extraction-item .ei-title { font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: -0.01em; color: var(--encre); }
+.extraction-item .ei-meta { font-size: 0.72rem; color: var(--cendre); margin-top: 2px; }
+.extraction-item .ei-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; padding-top: 8px; border-top: var(--border-light); }
+.extraction-item .ei-stat { font-size: 0.75rem; color: var(--cendre); }
+.extraction-item .ei-stat strong { color: var(--encre); }
 
-/* ─── UTIL ─── */
-.mt-16 { margin-top: 16px; }
-.mt-10 { margin-top: 10px; }
-.flex-end { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
-.flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.separator { border: none; border-top: 1.5px solid var(--creme-sombre); margin: 18px 0; }
+/* ─── INFO BOX ─── */
 .info-box {
-  background: #faf5ec;
-  border-left: 4px solid var(--brun-clair);
-  border-radius: 0 7px 7px 0;
-  padding: 10px 14px;
-  font-family: 'Crimson Text', serif;
-  font-size: 0.9rem;
-  color: var(--brun);
+  background: var(--sable);
+  border-left: 3px solid var(--encre);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 9px 13px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--encre);
   margin-bottom: 16px;
   line-height: 1.6;
 }
-.empty-state {
-  text-align: center;
-  padding: 44px 20px;
-  color: var(--gris);
-}
-.empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }
-.empty-state p { font-size: 0.9rem; line-height: 1.6; }
 
+/* ─── STEP INDICATOR ─── */
+.step-indicator { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+.step { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; color: var(--cendre); text-transform: uppercase; letter-spacing: 0.1em; }
+.step-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--sable);
+  color: var(--cendre);
+  border: 1.5px solid var(--lin);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.6rem; font-weight: 700;
+}
+.step.done .step-dot { background: var(--encre); color: var(--craie); border-color: var(--encre); }
+.step.active .step-dot { background: var(--signal); color: white; border-color: var(--signal); }
+.step.active { color: var(--encre); }
+.step-sep { color: var(--lin); font-size: 0.8rem; }
+
+/* ─── FORMULA BADGE ─── */
 .formule-badge {
   display: inline-flex; align-items: center; gap: 5px;
-  background: var(--vert);
+  background: var(--signal);
   color: white;
-  border-radius: 5px;
+  border-radius: var(--r-sm);
   padding: 4px 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: help;
   position: relative;
 }
@@ -671,107 +642,56 @@ tr:hover td { background: #faf5ec; }
   position: absolute;
   bottom: 120%; left: 50%;
   transform: translateX(-50%);
-  background: var(--ecorce);
-  color: var(--creme);
+  background: var(--encre);
+  color: var(--craie);
   padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 0.76rem;
+  border-radius: var(--r-md);
+  font-size: 0.72rem;
   width: 260px;
   text-align: left;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s;
   z-index: 10;
   white-space: pre-line;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: 0;
 }
 .formule-badge:hover::after { opacity: 1; }
 
-.step-indicator { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
-.step { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--gris); }
-.step-dot {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--gris-clair);
-  color: var(--gris);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem; font-weight: 700;
-}
-.step.done .step-dot { background: var(--vert); color: white; }
-.step.active .step-dot { background: var(--brun); color: white; }
-.step-sep { color: var(--gris-clair); font-size: 0.8rem; }
+/* ─── EMPTY STATE ─── */
+.empty-state { text-align: center; padding: 44px 20px; color: var(--cendre); }
+.empty-state .icon { font-size: 2rem; margin-bottom: 12px; }
+.empty-state p { font-size: 0.85rem; line-height: 1.6; }
 
-/* ─── MOBILE / PWA ─── */
-@media (max-width: 600px) {
-  .header-inner { padding: 16px; gap: 16px; }
-  .title-duramen { font-size: 1.7rem; }
-  .header-right { display: none; }
-  main { padding: 16px 12px 100px; }
-  .tabs { padding: 0 8px; gap: 0; }
-  .tab { padding: 10px 12px; font-size: 0.78rem; gap: 4px; }
-  .card { padding: 16px; }
-  .form-grid.four { grid-template-columns: 1fr 1fr; }
-  .btn { padding: 12px 18px; font-size: 0.9rem; }
-  .extract-modal { padding: 20px 16px; border-radius: 14px 14px 0 0; }
-  .extract-modal-bg { align-items: flex-end; padding: 0; }
-  .step-indicator { gap: 4px; }
-  .step { font-size: 0.72rem; }
-}
-/* Safe area pour les écrans avec encoche/barre de navigation */
-body {
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-footer {
-  padding-bottom: calc(16px + env(safe-area-inset-bottom));
-}
-/* Bannière d'installation PWA */
-#pwa-banner {
-  display: none;
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(135deg, #2d5a27, #3d7a35);
-  color: white;
-  padding: 14px 20px;
-  z-index: 200;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
-  border-top: 2px solid #a8d98f;
-}
-#pwa-banner.show { display: flex; }
-#pwa-banner p { font-size: 0.88rem; text-align: center; margin: 0; }
-#pwa-banner p strong { color: #fdd835; }
-#pwa-banner .pwa-btns { display: flex; gap: 10px; }
-#pwa-banner .pwa-btns button {
-  padding: 8px 18px; border-radius: 7px; border: none;
-  font-weight: 600; font-size: 0.84rem; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-}
-#pwa-install-btn { background: #fdd835; color: #1e2d1a; }
-#pwa-dismiss-btn { background: rgba(255,255,255,0.15); color: white; }
+/* ─── UTIL ─── */
+.mt-16 { margin-top: 16px; }
+.mt-10 { margin-top: 10px; }
+.flex-end { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.separator { border: none; border-top: var(--border-light); margin: 18px 0; }
 
 /* ─── FOOTER ─── */
 footer {
-  background: linear-gradient(135deg, #2d5a27 0%, #3d7a35 100%);
-  color: var(--vert-pale);
+  background: var(--encre);
+  color: var(--cendre);
   text-align: center;
-  padding: 16px;
-  font-size: 0.75rem;
-  border-top: 2px solid var(--brun-clair);
-  letter-spacing: 0.04em;
+  padding: 14px;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
-footer span { color: var(--brun-clair); }
+footer span { color: var(--lin); font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
 
 /* ─── ESSENCE COLORS ─── */
 .ec-chene        { background: #8B6914; }
 .ec-hetre        { background: #d4a843; }
 .ec-frene        { background: #5aaa8e; }
 .ec-chataignier  { background: #7a5c2e; }
-.ec-douglas      { background: #3d7a35; }
+.ec-douglas      { background: #3d6e4a; }
 .ec-meleze       { background: #e07b30; }
 .ec-pin-s        { background: #9B8040; }
 .ec-pin-m        { background: #c49a30; }
@@ -786,6 +706,15 @@ footer span { color: var(--brun-clair); }
 .ec-platane      { background: #85a855; }
 .ec-tilleul      { background: #b5cc44; }
 .ec-autre        { background: #8a9f74; }
+
+/* ─── ICON ACCENT ─── */
+.icon-inline {
+  display: inline-block;
+  width: 20px; height: 20px;
+  vertical-align: middle;
+  margin-right: 4px;
+  color: var(--encre);
+}
 </style>
 </head>
 <body>
@@ -793,40 +722,41 @@ footer span { color: var(--brun-clair); }
 <!-- ─── HEADER ─── -->
 <header>
   <div class="header-inner">
+
+    <!-- Logo : bouton noir + duramen blanc -->
     <div class="logo-mark">
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <!-- D1 — Coupe anatomique du duramen -->
-        <!-- Écorce -->
-        <circle cx="32" cy="32" r="30" fill="#5c3d1e"/>
-        <!-- Liber -->
-        <circle cx="32" cy="32" r="24" fill="#c4874a"/>
-        <!-- Aubier -->
-        <circle cx="32" cy="32" r="18" fill="#e8b87a"/>
-        <!-- Duramen -->
-        <circle cx="32" cy="32" r="12" fill="#7a3e1a"/>
-        <!-- Moelle -->
-        <circle cx="32" cy="32" r="3.5" fill="#3d1e0a"/>
-        <!-- Cernes annuels -->
-        <circle cx="32" cy="32" r="6.5" fill="none" stroke="#5c3010" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="32" cy="32" r="9.5" fill="none" stroke="#5c3010" stroke-width="0.5" opacity="0.4"/>
-        <circle cx="32" cy="32" r="15"  fill="none" stroke="#8b5a2a" stroke-width="0.6" opacity="0.4"/>
-        <circle cx="32" cy="32" r="21"  fill="none" stroke="#8b5a2a" stroke-width="0.5" opacity="0.3"/>
-        <!-- Rayons médullaires -->
-        <line x1="32" y1="20" x2="32" y2="3"  stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
-        <line x1="32" y1="44" x2="32" y2="61" stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
-        <line x1="20" y1="32" x2="3"  y2="32" stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
-        <line x1="44" y1="32" x2="61" y2="32" stroke="#5c3010" stroke-width="0.8" opacity="0.5"/>
-        <line x1="23" y1="23" x2="10" y2="10" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
-        <line x1="41" y1="41" x2="54" y2="54" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
-        <line x1="41" y1="23" x2="54" y2="10" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
-        <line x1="23" y1="41" x2="10" y2="54" stroke="#5c3010" stroke-width="0.6" opacity="0.35"/>
+      <!-- Duramen SVG en blanc -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" aria-label="Duramen" style="color:#fff">
+        <g transform="translate(100,100)">
+          <circle cx="0" cy="0" r="88" stroke="currentColor" stroke-width="5"/>
+          <rect x="-96" y="-14" width="20" height="8" rx="2" fill="currentColor"/>
+          <rect x="76"  y="-14" width="20" height="8" rx="2" fill="currentColor"/>
+          <rect x="-14" y="-96" width="8" height="20" rx="2" fill="currentColor"/>
+          <rect x="-14" y="76"  width="8" height="20" rx="2" fill="currentColor"/>
+          <circle cx="0" cy="0" r="64" stroke="currentColor" stroke-width="3.5"/>
+          <circle cx="0" cy="0" r="38" stroke="currentColor" stroke-width="3"/>
+          <circle cx="0" cy="0" r="12" stroke="currentColor" stroke-width="3"/>
+          <circle cx="0" cy="0" r="4" fill="currentColor"/>
+          <line x1="-88" y1="0" x2="-12" y2="0" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="12"  y1="0" x2="88"  y2="0" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="-52" y1="-52" x2="-9"  y2="-9"  stroke="currentColor" stroke-width="2.5"/>
+          <line x1="9"   y1="9"   x2="52"  y2="52"  stroke="currentColor" stroke-width="2.5"/>
+          <line x1="0"   y1="-88" x2="0"   y2="-12" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="0"   y1="88"  x2="0"   y2="12"  stroke="currentColor" stroke-width="2.5"/>
+          <line x1="76"  y1="-44" x2="44"  y2="-25" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="76"  y1="44"  x2="44"  y2="25"  stroke="currentColor" stroke-width="2.5"/>
+          <line x1="-76" y1="-44" x2="-44" y2="-25" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="-76" y1="44"  x2="-44" y2="25"  stroke="currentColor" stroke-width="2.5"/>
+        </g>
       </svg>
     </div>
+
     <div class="header-title">
       <div class="title-duramen">DURAMEN</div>
       <div class="title-sub">Dynamique pour un Usage Raisonné des Arbres de la MEtropole Nantaise</div>
       <div class="title-tc">Tronc Commun — Gestion du stock bois d'œuvre</div>
     </div>
+
     <div class="header-right" id="header-stats">
       <div class="stat-pill">Stock : <strong id="hs-vol">—</strong> m³ utiles</div>
       <div class="stat-pill"><strong id="hs-lots">—</strong> lots · <strong id="hs-essences">—</strong> essences</div>
@@ -837,18 +767,36 @@ footer span { color: var(--brun-clair); }
 <!-- ─── TABS ─── -->
 <div class="tabs-wrap">
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('saisie',this)"><span class="tab-icon">＋</span> Nouveau lot</button>
-    <button class="tab" onclick="switchTab('stock',this)"><span class="tab-icon">▦</span> Stock par essence</button>
-    <button class="tab" onclick="switchTab('extraction',this)"><span class="tab-icon">↗</span> Extractions</button>
-    <button class="tab" onclick="switchTab('historique',this)"><span class="tab-icon">≡</span> Historique</button>
+    <button class="tab active" onclick="switchTab('saisie',this)">
+      <span class="tab-icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      Nouveau lot
+    </button>
+    <button class="tab" onclick="switchTab('stock',this)">
+      <span class="tab-icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+      </span>
+      Stock par essence
+    </button>
+    <button class="tab" onclick="switchTab('extraction',this)">
+      <span class="tab-icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Extractions
+    </button>
+    <button class="tab" onclick="switchTab('historique',this)">
+      <span class="tab-icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="2" y1="3" x2="12" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="11" x2="8" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      Historique
+    </button>
   </div>
 </div>
 
 <main>
 
-  <!-- ═══════════════════════════════════════════════
-       ONGLET 1 : NOUVEAU LOT
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ ONGLET 1 : NOUVEAU LOT ═══ -->
   <div class="panel active" id="panel-saisie">
 
     <div class="step-indicator" id="steps">
@@ -862,7 +810,10 @@ footer span { color: var(--brun-clair); }
     <!-- ÉTAPE 1 -->
     <div id="etape1">
       <div class="card">
-        <div class="card-title"><span class="icon">🌲</span> Informations générales du lot</div>
+        <div class="card-title">
+          <svg class="icon-inline" viewBox="0 0 104 132" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28 120 L28 86" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M28 92 C28 60 4 54 8 40 C12 26 44 26 48 40 C52 54 28 60 28 92Z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M52 125 L52 82" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M52 90 C52 52 22 44 26 26 C30 8 74 8 78 26 C82 44 52 52 52 90Z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M76 120 L76 88" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M76 94 C76 62 52 56 56 42 C60 28 92 28 96 42 C100 56 76 62 76 94Z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 126 Q52 118 96 126" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          Informations générales du lot
+        </div>
         <div class="form-grid">
           <div class="field">
             <label>Essence de l'arbre *</label>
@@ -941,9 +892,9 @@ footer span { color: var(--brun-clair); }
     <div id="etape2" style="display:none">
       <div class="card">
         <div class="card-title">
-          <span class="icon">🪵</span>
+          <svg class="icon-inline" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="22" y1="28" x2="112" y2="33" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="22" y1="92" x2="112" y2="87" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M72 33 Q80 18 96 8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><ellipse cx="22" cy="60" rx="14" ry="32" fill="white" stroke="currentColor" stroke-width="3"/><ellipse cx="22" cy="60" rx="9" ry="21" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="22" cy="60" rx="4.5" ry="11" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="112" cy="60" rx="10" ry="27" fill="white" stroke="currentColor" stroke-width="3"/></svg>
           Saisie des grumes
-          <span id="nb-grumes-badge" style="margin-left:auto;background:var(--brun);color:white;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;">0 grume</span>
+          <span id="nb-grumes-badge" style="margin-left:auto;background:var(--encre);color:var(--craie);padding:2px 9px;border-radius:2px;font-size:0.65rem;font-weight:400;letter-spacing:0.1em;">0 grume</span>
         </div>
         <div class="info-box">Saisissez les dimensions de chaque grume. Le diamètre est mesuré au petit bout, sans l'écorce.</div>
         <div class="form-grid three">
@@ -957,12 +908,14 @@ footer span { color: var(--brun-clair); }
           </div>
           <div class="field">
             <label>&nbsp;</label>
-            <button class="btn btn-success" onclick="ajouterGrume()">+ Ajouter la grume</button>
+            <button class="btn btn-primary" onclick="ajouterGrume()">+ Ajouter la grume</button>
           </div>
         </div>
         <div id="grumes-container" style="margin-top:18px">
           <div class="empty-state">
-            <div class="icon">🪵</div>
+            <div class="icon">
+              <svg width="40" height="35" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="22" y1="28" x2="112" y2="33" stroke="#C9BAA3" stroke-width="3" stroke-linecap="round"/><line x1="22" y1="92" x2="112" y2="87" stroke="#C9BAA3" stroke-width="3" stroke-linecap="round"/><ellipse cx="22" cy="60" rx="14" ry="32" fill="none" stroke="#C9BAA3" stroke-width="3"/><ellipse cx="22" cy="60" rx="9" ry="21" fill="none" stroke="#C9BAA3" stroke-width="2"/><ellipse cx="112" cy="60" rx="10" ry="27" fill="none" stroke="#C9BAA3" stroke-width="3"/></svg>
+            </div>
             <p>Aucune grume saisie pour l'instant.<br>Ajoutez votre première grume ci-dessus.</p>
           </div>
         </div>
@@ -976,7 +929,7 @@ footer span { color: var(--brun-clair); }
     <!-- ÉTAPE 3 -->
     <div id="etape3" style="display:none">
       <div class="card">
-        <div class="card-title"><span class="icon">⚙️</span> Paramètres de sciage</div>
+        <div class="card-title">⚙ Paramètres de sciage</div>
         <div id="info-essence-debit" class="info-box"></div>
         <div class="form-grid four">
           <div class="field">
@@ -988,12 +941,16 @@ footer span { color: var(--brun-clair); }
             <input type="number" id="delta" min="0" max="60" step="1" placeholder="Ex : 18" oninput="calculerDebit()">
           </div>
           <div class="field">
+            <label>Trait de scie (mm)</label>
+            <input type="number" id="trait-scie" min="1" max="10" step="0.5" value="3" oninput="calculerDebit()">
+          </div>
+          <div class="field">
             <label>Nom du lot (optionnel)</label>
             <input type="text" id="lot-nom" placeholder="Ex : Chênes bord de chemin">
           </div>
           <div class="field">
             <label>&nbsp;</label>
-            <span class="formule-badge" style="align-self:flex-end" data-tip="Méthode du cylindre inscrit :\n1. Volume grume = π × (D/2)² × L\n2. Volume utile = Volume × (1 - delta/100)\n3. Nb planches = D / (e + trait de scie)\nLe trait de scie est de 3mm par défaut.">📐 Formule utilisée</span>
+            <span class="formule-badge" style="align-self:flex-end" data-tip="Méthode du cylindre inscrit :&#10;1. Volume grume = π × (D/2)² × L&#10;2. Volume utile = Volume × (1 - delta/100)&#10;3. Nb planches = D / (e + trait de scie)&#10;Le trait de scie est de 3mm par défaut.">📐 Formule utilisée</span>
           </div>
         </div>
       </div>
@@ -1005,7 +962,7 @@ footer span { color: var(--brun-clair); }
           <div class="dechets-block" id="dechets-block"></div>
         </div>
         <div class="card">
-          <div class="card-title"><span class="icon">📋</span> Détail par grume</div>
+          <div class="card-title">📋 Détail par grume</div>
           <div class="table-wrap">
             <table id="result-table">
               <thead>
@@ -1023,15 +980,13 @@ footer span { color: var(--brun-clair); }
 
       <div class="flex-between mt-16">
         <button class="btn btn-outline" onclick="goToEtape2()">← Retour</button>
-        <button class="btn btn-success" onclick="sauvegarderLot()">💾 Sauvegarder ce lot</button>
+        <button class="btn btn-primary" onclick="sauvegarderLot()">💾 Sauvegarder ce lot</button>
       </div>
     </div>
 
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       ONGLET 2 : STOCK PAR ESSENCE
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ ONGLET 2 : STOCK ═══ -->
   <div class="panel" id="panel-stock">
     <div class="stock-header">
       <div>
@@ -1044,26 +999,22 @@ footer span { color: var(--brun-clair); }
     <div id="stock-essences"></div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       ONGLET 3 : EXTRACTIONS
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ ONGLET 3 : EXTRACTIONS ═══ -->
   <div class="panel" id="panel-extraction">
     <div class="flex-between" style="margin-bottom:20px">
       <div>
         <div class="stock-title">Extractions de lots</div>
         <div class="stock-subtitle">Enregistrez les sorties de bois avec usage et destination</div>
       </div>
-      <button class="btn btn-orange" onclick="ouvrirModalExtraction()">↗ Nouvelle extraction</button>
+      <button class="btn btn-primary" onclick="ouvrirModalExtraction()">↗ Nouvelle extraction</button>
     </div>
     <div id="extraction-list"></div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       ONGLET 4 : HISTORIQUE
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ ONGLET 4 : HISTORIQUE ═══ -->
   <div class="panel" id="panel-historique">
     <div class="flex-between" style="margin-bottom:18px">
-      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ecorce)">Lots enregistrés</div>
+      <div class="stock-title">Lots enregistrés</div>
       <button class="btn btn-outline" onclick="exporterCSV()">⬇ Exporter CSV</button>
     </div>
     <div id="historique-container"></div>
@@ -1081,9 +1032,7 @@ footer span { color: var(--brun-clair); }
     <div class="form-grid" style="gap:14px">
       <div class="field">
         <label>Essence concernée *</label>
-        <select id="ext-essence">
-          <option value="">— Choisir —</option>
-        </select>
+        <select id="ext-essence"><option value="">— Choisir —</option></select>
       </div>
       <div class="field">
         <label>Volume extrait (m³ utiles) *</label>
@@ -1128,7 +1077,7 @@ footer span { color: var(--brun-clair); }
 
     <div class="flex-end" style="margin-top:20px">
       <button class="btn btn-outline" onclick="fermerModalExtraction()">Annuler</button>
-      <button class="btn btn-orange" onclick="enregistrerExtraction()">↗ Enregistrer l'extraction</button>
+      <button class="btn btn-primary" onclick="enregistrerExtraction()">↗ Enregistrer l'extraction</button>
     </div>
   </div>
 </div>
@@ -1143,7 +1092,6 @@ let grumes = [];
 let lots        = JSON.parse(localStorage.getItem('duramen_lots')        || localStorage.getItem('grumes_lots') || '[]');
 let extractions = JSON.parse(localStorage.getItem('duramen_extractions') || '[]');
 
-// Migration depuis ancien storage
 if (localStorage.getItem('grumes_lots') && !localStorage.getItem('duramen_lots')) {
   localStorage.setItem('duramen_lots', JSON.stringify(lots));
 }
@@ -1162,192 +1110,190 @@ const ESSENCES_INFO = {
   'Noyer':              { delta: 25, usage: 'Ébénisterie, mobilier haut de gamme',            color: 'ec-noyer' },
   'Peuplier':           { delta: 22, usage: "Caisserie, contreplaqué, allumettes",            color: 'ec-peuplier' },
   'Pin maritime':       { delta: 18, usage: 'Charpente, emballage, caisserie',                color: 'ec-pin-m' },
-  'Pin sylvestre':      { delta: 18, usage: 'Charpente, menuiserie',                          color: 'ec-pin-s' },
-  'Platane':            { delta: 20, usage: 'Ébénisterie, tournage, parquet',                 color: 'ec-platane' },
-  'Robinier (Acacia)':  { delta: 18, usage: 'Piquets, ext. très résistant, parc',            color: 'ec-robinier' },
-  'Séquoia':            { delta: 15, usage: 'Bardage, terrasse, extérieur durable',           color: 'ec-sequoia' },
-  'Tilleul':            { delta: 20, usage: 'Sculpture, lutherie, boissellerie',              color: 'ec-tilleul' },
-  'Autre':              { delta: 20, usage: "Variable selon l'essence",                       color: 'ec-autre' },
+  'Pin sylvestre':      { delta: 18, usage: 'Charpente, menuiserie intérieure',               color: 'ec-pin-s' },
+  'Platane':            { delta: 20, usage: 'Ébénisterie, parquet, lambris',                  color: 'ec-platane' },
+  'Robinier (Acacia)':  { delta: 15, usage: 'Poteaux, terrasse, ext. très résistant',        color: 'ec-robinier' },
+  'Séquoia':            { delta: 15, usage: 'Bardage, mobilier de jardin',                    color: 'ec-sequoia' },
+  'Tilleul':            { delta: 22, usage: 'Sculpture, lutherie, jouets',                    color: 'ec-tilleul' },
+  'Autre':              { delta: 20, usage: 'Usage à définir selon les caractéristiques',     color: 'ec-autre' },
 };
 
-// ═══════════ SAUVEGARDE ═══════════
 function sauver() {
-  localStorage.setItem('duramen_lots', JSON.stringify(lots));
+  localStorage.setItem('duramen_lots',        JSON.stringify(lots));
   localStorage.setItem('duramen_extractions', JSON.stringify(extractions));
   mettreAJourHeaderStats();
 }
 
 // ═══════════ NAVIGATION ═══════════
-function switchTab(tab, btn) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+function switchTab(panel, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + tab).classList.add('active');
-  if (btn) btn.classList.add('active');
-  if (tab === 'historique') afficherHistorique();
-  if (tab === 'stock')      afficherStock();
-  if (tab === 'extraction') afficherExtractions();
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + panel).classList.add('active');
+  btn.classList.add('active');
+  if (panel === 'stock')      afficherStock();
+  if (panel === 'extraction') afficherExtractions();
+  if (panel === 'historique') afficherHistorique();
 }
 
 function setStep(n) {
   [1,2,3].forEach(i => {
     const el = document.getElementById('step'+i);
     el.classList.remove('active','done');
-    if (i < n) el.classList.add('done');
+    if (i < n)  el.classList.add('done');
     if (i === n) el.classList.add('active');
   });
 }
+
 function goToEtape1() {
-  document.getElementById('etape1').style.display = '';
-  document.getElementById('etape2').style.display = 'none';
-  document.getElementById('etape3').style.display = 'none';
+  document.getElementById('etape1').style.display='';
+  document.getElementById('etape2').style.display='none';
+  document.getElementById('etape3').style.display='none';
   setStep(1);
 }
 function goToEtape2() {
-  const champs = ['essence','commune','cause','provenance','annee','usage'];
-  for (let c of champs) {
-    if (!document.getElementById(c).value) {
-      alert('⚠️ Merci de remplir tous les champs obligatoires (marqués *) avant de continuer.');
-      document.getElementById(c).focus(); return;
-    }
+  const ess = document.getElementById('essence').value;
+  const com = document.getElementById('commune').value.trim();
+  const cau = document.getElementById('cause').value;
+  const pro = document.getElementById('provenance').value;
+  const ann = document.getElementById('annee').value;
+  const usa = document.getElementById('usage').value;
+  if (!ess||!com||!cau||!pro||!ann||!usa) {
+    alert('⚠️ Merci de renseigner tous les champs obligatoires.'); return;
   }
-  document.getElementById('etape1').style.display = 'none';
-  document.getElementById('etape2').style.display = '';
-  document.getElementById('etape3').style.display = 'none';
+  document.getElementById('etape1').style.display='none';
+  document.getElementById('etape2').style.display='';
+  document.getElementById('etape3').style.display='none';
   setStep(2);
 }
 function goToEtape3() {
-  if (grumes.length === 0) { alert('⚠️ Veuillez ajouter au moins une grume avant de continuer.'); return; }
-  const essence = document.getElementById('essence').value;
-  const info    = ESSENCES_INFO[essence] || ESSENCES_INFO['Autre'];
-  if (!document.getElementById('delta').value) document.getElementById('delta').value = info.delta;
-  document.getElementById('info-essence-debit').innerHTML =
-    `<strong>${essence}</strong> — ${info.usage}.<br>
-     Usage prévu : <strong>${document.getElementById('usage').value}</strong>. 
-     Perte sciage suggérée : <strong>${info.delta}%</strong> (modifiable).`;
-  document.getElementById('etape1').style.display = 'none';
-  document.getElementById('etape2').style.display = 'none';
-  document.getElementById('etape3').style.display = '';
+  if (grumes.length === 0) { alert('⚠️ Veuillez saisir au moins une grume.'); return; }
+  const info = ESSENCES_INFO[document.getElementById('essence').value] || { delta: 20, usage: '' };
+  document.getElementById('epaisseur').value = document.getElementById('epaisseur').value || '27';
+  document.getElementById('delta').value     = document.getElementById('delta').value     || info.delta;
+  document.getElementById('info-essence-debit').textContent =
+    `Essence : ${document.getElementById('essence').value} — Delta conseillé : ${info.delta}% — Usage typique : ${info.usage}`;
+  document.getElementById('etape1').style.display='none';
+  document.getElementById('etape2').style.display='none';
+  document.getElementById('etape3').style.display='';
   setStep(3);
   calculerDebit();
 }
 
 // ═══════════ GRUMES ═══════════
 function ajouterGrume() {
-  const lon = parseFloat(document.getElementById('g-longueur').value);
-  const dia = parseFloat(document.getElementById('g-diametre').value);
-  if (!lon || !dia || lon <= 0 || dia <= 0) { alert('⚠️ Veuillez saisir une longueur et un diamètre valides.'); return; }
-  grumes.push({ longueur: lon, diametre: dia });
+  const l = parseFloat(document.getElementById('g-longueur').value);
+  const d = parseFloat(document.getElementById('g-diametre').value);
+  if (!l || !d || l <= 0 || d <= 0) { alert('⚠️ Longueur et diamètre sont obligatoires.'); return; }
+  grumes.push({ longueur: l, diametre: d });
   document.getElementById('g-longueur').value = '';
   document.getElementById('g-diametre').value = '';
   document.getElementById('g-longueur').focus();
-  renderGrumes();
+  afficherGrumes();
 }
 
 function supprimerGrume(i) {
   grumes.splice(i, 1);
-  renderGrumes();
+  afficherGrumes();
 }
 
-function renderGrumes() {
-  const container = document.getElementById('grumes-container');
-  const badge     = document.getElementById('nb-grumes-badge');
-  badge.textContent = grumes.length + (grumes.length > 1 ? ' grumes' : ' grume');
+function afficherGrumes() {
+  const c = document.getElementById('grumes-container');
+  document.getElementById('nb-grumes-badge').textContent = grumes.length + ' grume' + (grumes.length>1?'s':'');
   if (grumes.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">🪵</div><p>Aucune grume saisie.<br>Ajoutez votre première grume ci-dessus.</p></div>`;
+    c.innerHTML = `<div class="empty-state"><div class="icon">🪵</div><p>Aucune grume saisie.<br>Ajoutez votre première grume ci-dessus.</p></div>`;
     return;
   }
-  let volTot = 0;
-  grumes.forEach(g => { volTot += Math.PI * Math.pow((g.diametre/2)/100, 2) * g.longueur; });
-  container.innerHTML = grumes.map((g, i) => `
+  c.innerHTML = grumes.map((g, i) => `
     <div class="grume-item">
       <div class="grume-num">${i+1}</div>
       <div class="grume-info">
         <div class="grume-field"><span>Longueur</span><span>${g.longueur} m</span></div>
         <div class="grume-field"><span>Ø petit bout</span><span>${g.diametre} cm</span></div>
-        <div class="grume-field"><span>Vol. indicatif</span><span>${(Math.PI*Math.pow((g.diametre/2)/100,2)*g.longueur).toFixed(3)} m³</span></div>
+        <div class="grume-field"><span>Vol. grume</span><span>${(Math.PI * Math.pow(g.diametre/200,2) * g.longueur).toFixed(3)} m³</span></div>
       </div>
-      <button class="btn btn-danger btn-sm" onclick="supprimerGrume(${i})">🗑 Suppr.</button>
-    </div>`).join('') +
-    `<div style="text-align:right;margin-top:8px;font-size:0.83rem;color:var(--gris)">
-      Volume brut total : <strong style="color:var(--brun)">${volTot.toFixed(3)} m³</strong>
-    </div>`;
+      <button class="btn btn-danger btn-sm" onclick="supprimerGrume(${i})">✕</button>
+    </div>`).join('');
 }
 
-// ═══════════ CALCUL DÉBIT ═══════════
+// ═══════════ CALCUL ═══════════
 function calculerDebit() {
-  const e_mm  = parseFloat(document.getElementById('epaisseur').value);
-  const delta = parseFloat(document.getElementById('delta').value);
-  if (!e_mm || !delta || grumes.length === 0) {
-    document.getElementById('resultats-container').style.display = 'none'; return;
-  }
-  const trait_mm = 3;
-  let totalVolBrut=0, totalVolUtile=0, totalVolDechets=0, totalPlanches=0, totalLineaire=0;
-  const lignes = [];
-  grumes.forEach((g, i) => {
-    const D_m   = g.diametre / 100;
-    const D_mm  = g.diametre * 10;
-    const V_brut = Math.PI * Math.pow(D_m/2, 2) * g.longueur;
-    const N      = Math.max(1, Math.floor((D_mm * 0.85) / (e_mm + trait_mm)));
-    const V_utile = V_brut * (1 - delta/100);
-    const lin    = N * g.longueur;
-    totalVolBrut    += V_brut;
-    totalVolUtile   += V_utile;
-    totalVolDechets += V_brut - V_utile;
-    totalPlanches   += N;
-    totalLineaire   += lin;
-    lignes.push({ i, g, V_brut, N, lin, L_moy_mm: D_mm*0.7 });
+  const epaisseur  = parseFloat(document.getElementById('epaisseur').value);
+  const delta      = parseFloat(document.getElementById('delta').value);
+  const traitScie  = parseFloat(document.getElementById('trait-scie').value) || 3;
+  const container  = document.getElementById('resultats-container');
+  if (!epaisseur || isNaN(delta) || grumes.length === 0) { container.style.display='none'; return; }
+
+  let totalVolBrut=0, totalVolUtile=0, totalPlanches=0, totalLineaire=0;
+  const rows = grumes.map((g,i) => {
+    const r = g.diametre / 200;
+    const volBrut = Math.PI * r * r * g.longueur;
+    const volUtile = volBrut * (1 - delta/100);
+    const nbPlanches = Math.floor(g.diametre / (epaisseur/10 + traitScie/10));
+    const lineaire = nbPlanches * g.longueur;
+    const largMoy = nbPlanches > 0 ? (g.diametre / nbPlanches).toFixed(1) : '—';
+    totalVolBrut    += volBrut;
+    totalVolUtile   += volUtile;
+    totalPlanches   += nbPlanches;
+    totalLineaire   += lineaire;
+    return `<tr>
+      <td>${i+1}</td>
+      <td>${g.longueur} m</td>
+      <td>${g.diametre} cm</td>
+      <td>${volBrut.toFixed(3)} m³</td>
+      <td>${nbPlanches}</td>
+      <td>${lineaire.toFixed(1)} m</td>
+      <td>${largMoy} cm</td>
+    </tr>`;
   });
+
+  const totalDechets = totalVolBrut - totalVolUtile;
   document.getElementById('result-grid').innerHTML = `
-    <div class="result-stat"><div class="val">${totalPlanches}</div><div class="unit">planches</div><div class="lbl">Nombre total</div></div>
-    <div class="result-stat"><div class="val">${totalLineaire.toFixed(1)}</div><div class="unit">mètres linéaires</div><div class="lbl">Longueur totale</div></div>
-    <div class="result-stat"><div class="val">${totalVolUtile.toFixed(3)}</div><div class="unit">m³ utiles</div><div class="lbl">Bois valorisé</div></div>
-    <div class="result-stat"><div class="val">${totalVolBrut.toFixed(3)}</div><div class="unit">m³ bruts</div><div class="lbl">Volume total grumes</div></div>`;
+    <div class="result-stat"><div class="val">${totalVolUtile.toFixed(3)}</div><div class="unit">m³</div><div class="lbl">Volume utile</div></div>
+    <div class="result-stat"><div class="val">${grumes.length}</div><div class="unit">grume${grumes.length>1?'s':''}</div><div class="lbl">Billes saisies</div></div>
+    <div class="result-stat"><div class="val">${totalPlanches}</div><div class="unit">planches</div><div class="lbl">Débit théorique</div></div>
+    <div class="result-stat"><div class="val">${totalLineaire.toFixed(1)}</div><div class="unit">m lin.</div><div class="lbl">Linéaire total</div></div>
+    <div class="result-stat"><div class="val">${delta}</div><div class="unit">%</div><div class="lbl">Delta perte</div></div>`;
   document.getElementById('dechets-block').innerHTML = `
-    <div>♻️</div>
-    <div class="txt">Déchet estimé (dosses, délignures, sciure) :
-      <strong>${totalVolDechets.toFixed(3)} m³</strong> (${(totalVolDechets*1000).toFixed(0)} L)
-      — valorisable en <strong>bois de chauffage, plaquettes ou paillage</strong>.
-    </div>`;
-  document.getElementById('result-tbody').innerHTML = lignes.map(l => `
-    <tr>
-      <td style="font-weight:700;color:var(--brun)">${l.i+1}</td>
-      <td>${l.g.longueur} m</td>
-      <td>${l.g.diametre} cm</td>
-      <td>${l.V_brut.toFixed(3)} m³</td>
-      <td style="font-weight:600">${l.N}</td>
-      <td style="font-weight:600">${l.lin.toFixed(1)} m</td>
-      <td>${(l.L_moy_mm/10).toFixed(1)} cm</td>
-    </tr>`).join('');
-  document.getElementById('resultats-container').style.display = '';
+    <span>♻️</span>
+    <span class="txt">Volume brut : <strong>${totalVolBrut.toFixed(3)} m³</strong> · Déchets estimés : <strong>${totalDechets.toFixed(3)} m³</strong> (sciure, dosses, délignures)</span>`;
+  document.getElementById('result-tbody').innerHTML = rows.join('');
+  container.style.display = '';
 }
 
 // ═══════════ SAUVEGARDE LOT ═══════════
 function sauvegarderLot() {
   const epaisseur = parseFloat(document.getElementById('epaisseur').value);
   const delta     = parseFloat(document.getElementById('delta').value);
-  if (!epaisseur || !delta) { alert("⚠️ Veuillez renseigner l'épaisseur et le delta avant de sauvegarder."); return; }
-  const trait_mm = 3;
+  const traitScie = parseFloat(document.getElementById('trait-scie').value) || 3;
+  if (!epaisseur || isNaN(delta)) { alert('⚠️ Veuillez renseigner les paramètres de sciage.'); return; }
+
   let totalVolBrut=0, totalVolUtile=0, totalPlanches=0, totalLineaire=0;
   grumes.forEach(g => {
-    const D_m  = g.diametre/100, D_mm = g.diametre*10;
-    const V_brut = Math.PI * Math.pow(D_m/2, 2) * g.longueur;
-    const N = Math.max(1, Math.floor((D_mm*0.85)/(epaisseur+trait_mm)));
-    totalVolBrut   += V_brut;
-    totalVolUtile  += V_brut*(1-delta/100);
-    totalPlanches  += N;
-    totalLineaire  += N*g.longueur;
+    const r = g.diametre / 200;
+    const vb = Math.PI * r * r * g.longueur;
+    const vu = vb * (1 - delta/100);
+    const nb = Math.floor(g.diametre / (epaisseur/10 + traitScie/10));
+    totalVolBrut  += vb;
+    totalVolUtile += vu;
+    totalPlanches += nb;
+    totalLineaire += nb * g.longueur;
   });
+
+  const essence    = document.getElementById('essence').value;
+  const info       = ESSENCES_INFO[essence] || { delta: 20, usage: '', color: 'ec-autre' };
+  const usages     = [];
+  lots.filter(l => l.essence === essence).forEach(l => { if (l.usage && !usages.includes(l.usage)) usages.push(l.usage); });
+
   const lot = {
-    id: Date.now(),
-    nom:        document.getElementById('lot-nom').value || 'Lot sans nom',
-    essence:    document.getElementById('essence').value,
-    commune:    document.getElementById('commune').value,
-    cause:      document.getElementById('cause').value,
-    provenance: document.getElementById('provenance').value,
-    annee:      document.getElementById('annee').value,
-    usage:      document.getElementById('usage').value,
-    epaisseur, delta,
-    grumes:      [...grumes],
+    id:          Date.now(),
+    nom:         document.getElementById('lot-nom').value.trim() || `${essence} — ${document.getElementById('commune').value.trim()}`,
+    essence,
+    commune:     document.getElementById('commune').value.trim(),
+    cause:       document.getElementById('cause').value,
+    provenance:  document.getElementById('provenance').value,
+    annee:       document.getElementById('annee').value,
+    usage:       document.getElementById('usage').value,
+    epaisseur,   delta,
     nbGrumes:    grumes.length,
     volBrut:     totalVolBrut,
     volUtile:    totalVolUtile,
@@ -1355,130 +1301,93 @@ function sauvegarderLot() {
     nbPlanches:  totalPlanches,
     lineaire:    totalLineaire,
     date:        new Date().toLocaleDateString('fr-FR'),
-    stockRestant: totalVolUtile   // sera mis à jour lors des extractions
+    dateIso:     new Date().toISOString(),
+    grumes:      [...grumes],
+    usages,
   };
+
   lots.unshift(lot);
   sauver();
-  alert(`✅ Lot "${lot.nom}" sauvegardé !\n${lot.nbGrumes} grume(s) · ${lot.nbPlanches} planches · ${lot.lineaire.toFixed(1)} m · ${lot.volUtile.toFixed(3)} m³ utiles`);
+
   grumes = [];
-  renderGrumes();
-  ['essence','commune','cause','provenance','usage','lot-nom'].forEach(id => document.getElementById(id).value='');
-  ['annee','epaisseur','delta','g-longueur','g-diametre'].forEach(id => document.getElementById(id).value='');
-  goToEtape1();
+  afficherGrumes();
+  document.getElementById('essence').value    = '';
+  document.getElementById('commune').value    = '';
+  document.getElementById('cause').value      = '';
+  document.getElementById('provenance').value = '';
+  document.getElementById('annee').value      = '';
+  document.getElementById('usage').value      = '';
+  document.getElementById('epaisseur').value  = '';
+  document.getElementById('delta').value      = '';
+  document.getElementById('lot-nom').value    = '';
   document.getElementById('resultats-container').style.display = 'none';
+  goToEtape1();
+
+  alert(`✅ Lot sauvegardé !\n${lot.nom}\n${lot.volUtile.toFixed(3)} m³ utiles — ${lot.nbPlanches} planches`);
 }
 
-// ═══════════ STOCK PAR ESSENCE ═══════════
+// ═══════════ STOCK ═══════════
 function getStockParEssence() {
   const stock = {};
-  // Agréger les entrées (lots)
-  lots.forEach(lot => {
-    if (!stock[lot.essence]) stock[lot.essence] = { entree: 0, sorti: 0, nbLots: 0, nbGrumes: 0, usages: [] };
-    stock[lot.essence].entree   += lot.volUtile;
-    stock[lot.essence].nbLots   += 1;
-    stock[lot.essence].nbGrumes += lot.nbGrumes;
-    if (lot.usage && !stock[lot.essence].usages.includes(lot.usage)) stock[lot.essence].usages.push(lot.usage);
+  lots.forEach(l => {
+    if (!stock[l.essence]) stock[l.essence] = { entree:0, sorti:0, dispo:0, nbLots:0, nbGrumes:0, color: (ESSENCES_INFO[l.essence]||{color:'ec-autre'}).color, usages:[] };
+    stock[l.essence].entree   += l.volUtile;
+    stock[l.essence].nbLots   += 1;
+    stock[l.essence].nbGrumes += l.nbGrumes;
+    if (l.usage && !stock[l.essence].usages.includes(l.usage)) stock[l.essence].usages.push(l.usage);
   });
-  // Déduire les extractions
-  extractions.forEach(ext => {
-    if (stock[ext.essence]) stock[ext.essence].sorti += ext.volume;
+  extractions.forEach(e => {
+    if (stock[e.essence]) stock[e.essence].sorti += e.volume;
   });
-  // Calcul disponible
-  Object.keys(stock).forEach(e => {
-    stock[e].dispo = Math.max(0, stock[e].entree - stock[e].sorti);
-    stock[e].pct   = stock[e].entree > 0 ? (stock[e].sorti / stock[e].entree) * 100 : 0;
-  });
+  Object.keys(stock).forEach(k => { stock[k].dispo = Math.max(0, stock[k].entree - stock[k].sorti); });
   return stock;
 }
 
 function afficherStock() {
-  const stock = getStockParEssence();
-  const essences = Object.keys(stock);
+  const stock  = getStockParEssence();
+  const keys   = Object.keys(stock);
+  const totalE = keys.reduce((s,k)=>s+stock[k].entree,0);
+  const totalS = keys.reduce((s,k)=>s+stock[k].sorti,0);
+  const totalD = keys.reduce((s,k)=>s+stock[k].dispo,0);
 
-  if (essences.length === 0) {
-    document.getElementById('stock-totals').innerHTML = '';
-    document.getElementById('stock-essences').innerHTML = `
-      <div class="empty-state"><div class="icon">📦</div>
-      <p>Aucun stock enregistré.<br>Commencez par créer des lots dans l'onglet "Nouveau lot".</p></div>`;
+  document.getElementById('stock-totals').innerHTML = keys.length === 0 ? '' : `
+    <div class="stock-total-card">
+      <div class="stock-total-item"><div class="tv">${totalD.toFixed(2)}</div><div class="tu">m³</div><div class="tl">Disponible</div></div>
+      <div class="stock-divider"></div>
+      <div class="stock-total-item"><div class="tv">${totalE.toFixed(2)}</div><div class="tu">m³</div><div class="tl">Entrés</div></div>
+      <div class="stock-divider"></div>
+      <div class="stock-total-item"><div class="tv">${totalS.toFixed(2)}</div><div class="tu">m³</div><div class="tl">Sortis</div></div>
+      <div class="stock-divider"></div>
+      <div class="stock-total-item"><div class="tv">${keys.length}</div><div class="tu">essences</div><div class="tl">En stock</div></div>
+    </div>`;
+
+  if (keys.length === 0) {
+    document.getElementById('stock-essences').innerHTML = `<div class="empty-state"><div class="icon">📦</div><p>Aucun stock disponible.<br>Créez votre premier lot dans l'onglet "Nouveau lot".</p></div>`;
     return;
   }
 
-  // Totaux
-  const totalEntree = essences.reduce((s,e) => s+stock[e].entree, 0);
-  const totalSorti  = essences.reduce((s,e) => s+stock[e].sorti, 0);
-  const totalDispo  = essences.reduce((s,e) => s+stock[e].dispo, 0);
-  const totalLots   = lots.length;
-
-  document.getElementById('stock-totals').innerHTML = `
-    <div class="stock-total-card">
-      <div class="stock-total-item">
-        <div class="tv">${totalEntree.toFixed(2)}</div>
-        <div class="tu">m³ utiles</div>
-        <div class="tl">Total entré</div>
-      </div>
-      <div class="stock-divider"></div>
-      <div class="stock-total-item">
-        <div class="tv">${totalSorti.toFixed(2)}</div>
-        <div class="tu">m³ extraits</div>
-        <div class="tl">Total sorti</div>
-      </div>
-      <div class="stock-divider"></div>
-      <div class="stock-total-item">
-        <div class="tv" style="color:#7dc87d">${totalDispo.toFixed(2)}</div>
-        <div class="tu" style="color:var(--vert-clair)">m³ disponibles</div>
-        <div class="tl">Stock actuel</div>
-      </div>
-      <div class="stock-divider"></div>
-      <div class="stock-total-item">
-        <div class="tv">${totalLots}</div>
-        <div class="tu">lots</div>
-        <div class="tl">${essences.length} essence${essences.length>1?'s':''}</div>
-      </div>
-    </div>`;
-
-  // Par essence, triées par volume disponible décroissant
-  const sorted = essences.sort((a,b) => stock[b].dispo - stock[a].dispo);
-  const maxDispo = Math.max(...sorted.map(e => stock[e].dispo));
-
-  document.getElementById('stock-essences').innerHTML = sorted.map(essence => {
+  document.getElementById('stock-essences').innerHTML = keys.sort((a,b)=>stock[b].dispo-stock[a].dispo).map(essence => {
     const s    = stock[essence];
-    const info = ESSENCES_INFO[essence] || ESSENCES_INFO['Autre'];
-    const pctBar = maxDispo > 0 ? (s.dispo / maxDispo * 100) : 0;
+    const pct  = totalD > 0 ? (s.dispo / totalD * 100) : 0;
+    const info = ESSENCES_INFO[essence] || { delta: 20, usage: 'Usage à définir' };
     return `
       <div class="essence-row">
         <div class="essence-row-top">
           <div class="essence-name">
-            <div class="essence-dot ${info.color}"></div>
+            <div class="essence-dot ${s.color}"></div>
             ${essence}
           </div>
           <div class="essence-stats">
-            <div class="essence-stat">
-              <div class="es-val">${s.dispo.toFixed(3)}</div>
-              <div class="es-lbl">m³ dispo.</div>
-            </div>
-            <div class="essence-stat">
-              <div class="es-val">${s.entree.toFixed(3)}</div>
-              <div class="es-lbl">m³ entrés</div>
-            </div>
-            <div class="essence-stat">
-              <div class="es-val">${s.sorti.toFixed(3)}</div>
-              <div class="es-lbl">m³ sortis</div>
-            </div>
-            <div class="essence-stat">
-              <div class="es-val">${s.nbLots}</div>
-              <div class="es-lbl">lot${s.nbLots>1?'s':''}</div>
-            </div>
-            <div class="essence-stat">
-              <div class="es-val">${s.nbGrumes}</div>
-              <div class="es-lbl">grume${s.nbGrumes>1?'s':''}</div>
-            </div>
+            <div class="essence-stat"><div class="es-val">${s.dispo.toFixed(3)}</div><div class="es-lbl">m³ dispo.</div></div>
+            <div class="essence-stat"><div class="es-val">${s.entree.toFixed(3)}</div><div class="es-lbl">m³ entrés</div></div>
+            <div class="essence-stat"><div class="es-val">${s.sorti.toFixed(3)}</div><div class="es-lbl">m³ sortis</div></div>
+            <div class="essence-stat"><div class="es-val">${s.nbLots}</div><div class="es-lbl">lot${s.nbLots>1?'s':''}</div></div>
+            <div class="essence-stat"><div class="es-val">${s.nbGrumes}</div><div class="es-lbl">grume${s.nbGrumes>1?'s':''}</div></div>
           </div>
-          <button class="btn btn-orange btn-sm" onclick="ouvrirModalExtractionEssence('${essence}')">↗ Extraire</button>
+          <button class="btn btn-primary btn-sm" onclick="ouvrirModalExtractionEssence('${essence}')">↗ Extraire</button>
         </div>
-        <div class="essence-bar-wrap">
-          <div class="essence-bar" style="width:${pctBar}%;background:var(--${info.color.replace('ec-','') === info.color ? 'brun-med' : info.color});"></div>
-        </div>
-        <div style="margin-top:7px;font-size:0.75rem;color:var(--gris);font-family:'Crimson Text',serif;font-style:italic">
+        <div class="essence-bar-wrap"><div class="essence-bar" style="width:${pct.toFixed(1)}%"></div></div>
+        <div style="margin-top:7px;font-size:0.72rem;color:var(--cendre);font-family:var(--font-serif);font-style:italic">
           ${info.usage}${s.usages.length ? ' · Usages enregistrés : ' + s.usages.join(', ') : ''}
         </div>
       </div>`;
@@ -1487,20 +1396,17 @@ function afficherStock() {
 
 // ═══════════ EXTRACTIONS ═══════════
 function ouvrirModalExtraction() {
-  // Peupler le select essence avec les essences en stock
   const stock = getStockParEssence();
-  const sel = document.getElementById('ext-essence');
+  const sel   = document.getElementById('ext-essence');
   sel.innerHTML = '<option value="">— Choisir —</option>' +
     Object.keys(stock).filter(e => stock[e].dispo > 0).map(e =>
       `<option value="${e}">${e} (${stock[e].dispo.toFixed(3)} m³ dispo.)</option>`
     ).join('');
-  document.getElementById('ext-essence').value = '';
-  document.getElementById('ext-volume').value = '';
-  document.getElementById('ext-usage').value = '';
-  document.getElementById('ext-destination').value = '';
-  document.getElementById('ext-commune').value = '';
-  document.getElementById('ext-contact').value = '';
-  document.getElementById('ext-notes').value = '';
+  ['ext-essence','ext-volume','ext-usage','ext-destination','ext-commune','ext-contact','ext-notes'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el.tagName === 'SELECT') el.value = '';
+    else el.value = '';
+  });
   document.getElementById('ext-disponible').style.display = 'none';
   document.getElementById('modal-extraction').classList.add('open');
 }
@@ -1520,7 +1426,7 @@ function majDisponible() {
   if (!essence) { box.style.display = 'none'; return; }
   const stock = getStockParEssence();
   if (stock[essence]) {
-    box.innerHTML = `Stock disponible pour <strong>${essence}</strong> : <strong>${stock[essence].dispo.toFixed(3)} m³ utiles</strong> (${stock[essence].entree.toFixed(3)} entrés - ${stock[essence].sorti.toFixed(3)} sortis)`;
+    box.innerHTML = `Stock disponible pour <strong>${essence}</strong> : <strong>${stock[essence].dispo.toFixed(3)} m³ utiles</strong> (${stock[essence].entree.toFixed(3)} entrés — ${stock[essence].sorti.toFixed(3)} sortis)`;
     box.style.display = '';
   }
 }
@@ -1534,21 +1440,10 @@ function enregistrerExtraction() {
   const commune     = document.getElementById('ext-commune').value.trim();
   const contact     = document.getElementById('ext-contact').value.trim();
   const notes       = document.getElementById('ext-notes').value.trim();
-
-  if (!essence || !volume || !usage || !destination) {
-    alert('⚠️ Merci de renseigner tous les champs obligatoires (essence, volume, usage, destination).'); return;
-  }
+  if (!essence||!volume||!usage||!destination) { alert('⚠️ Merci de renseigner tous les champs obligatoires.'); return; }
   const stock = getStockParEssence();
-  if (volume > stock[essence].dispo) {
-    alert(`⚠️ Volume demandé (${volume} m³) supérieur au stock disponible (${stock[essence].dispo.toFixed(3)} m³).`); return;
-  }
-
-  const ext = {
-    id:          Date.now(),
-    essence, volume, usage, destination, commune, contact, notes,
-    date:        new Date().toLocaleDateString('fr-FR'),
-    dateIso:     new Date().toISOString()
-  };
+  if (volume > stock[essence].dispo) { alert(`⚠️ Volume demandé (${volume} m³) supérieur au stock disponible (${stock[essence].dispo.toFixed(3)} m³).`); return; }
+  const ext = { id: Date.now(), essence, volume, usage, destination, commune, contact, notes, date: new Date().toLocaleDateString('fr-FR'), dateIso: new Date().toISOString() };
   extractions.unshift(ext);
   sauver();
   fermerModalExtraction();
@@ -1560,24 +1455,20 @@ function enregistrerExtraction() {
 function afficherExtractions() {
   const container = document.getElementById('extraction-list');
   if (extractions.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">↗</div>
-      <p>Aucune extraction enregistrée.<br>Cliquez sur "Nouvelle extraction" pour enregistrer une sortie de bois.</p></div>`;
+    container.innerHTML = `<div class="empty-state"><div class="icon">↗</div><p>Aucune extraction enregistrée.<br>Cliquez sur "Nouvelle extraction" pour enregistrer une sortie de bois.</p></div>`;
     return;
   }
-
-  // Stats rapides
-  const totalSorti = extractions.reduce((s,e) => s+e.volume, 0);
+  const totalSorti = extractions.reduce((s,e)=>s+e.volume,0);
   const nbExt = extractions.length;
-
   container.innerHTML = `
-    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px">
-      <div class="card" style="flex:1;min-width:140px;padding:16px 20px;text-align:center;margin-bottom:0">
-        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--orange)">${totalSorti.toFixed(2)}</div>
-        <div style="font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px">m³ extraits au total</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+      <div class="card" style="flex:1;min-width:140px;padding:14px 18px;text-align:center;margin-bottom:0">
+        <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;color:var(--encre)">${totalSorti.toFixed(2)}</div>
+        <div style="font-size:0.62rem;color:var(--cendre);text-transform:uppercase;letter-spacing:0.13em;margin-top:4px">m³ extraits au total</div>
       </div>
-      <div class="card" style="flex:1;min-width:140px;padding:16px 20px;text-align:center;margin-bottom:0">
-        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--brun)">${nbExt}</div>
-        <div style="font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px">extraction${nbExt>1?'s':''} enregistrée${nbExt>1?'s':''}</div>
+      <div class="card" style="flex:1;min-width:140px;padding:14px 18px;text-align:center;margin-bottom:0">
+        <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;color:var(--encre)">${nbExt}</div>
+        <div style="font-size:0.62rem;color:var(--cendre);text-transform:uppercase;letter-spacing:0.13em;margin-top:4px">extraction${nbExt>1?'s':''} enregistrée${nbExt>1?'s':''}</div>
       </div>
     </div>
     <div class="extraction-list">
@@ -1585,16 +1476,16 @@ function afficherExtractions() {
         <div class="extraction-item">
           <div class="ei-header">
             <div>
-              <div class="ei-title">${ext.destination}${ext.commune ? ' — ' + ext.commune : ''}</div>
-              <div class="ei-meta">📅 ${ext.date}${ext.contact ? ' · 👤 ' + ext.contact : ''}</div>
+              <div class="ei-title">${ext.destination}${ext.commune?' — '+ext.commune:''}</div>
+              <div class="ei-meta">📅 ${ext.date}${ext.contact?' · 👤 '+ext.contact:''}</div>
             </div>
-            <button class="btn btn-danger btn-sm" onclick="supprimerExtraction(${idx})">🗑</button>
+            <button class="btn btn-danger btn-sm" onclick="supprimerExtraction(${idx})">✕</button>
           </div>
           <div class="ei-stats">
-            <div class="ei-stat">🌲 Essence : <strong>${ext.essence}</strong></div>
-            <div class="ei-stat">📦 Volume : <strong>${ext.volume} m³</strong></div>
-            <div class="ei-stat">🔨 Usage : <strong>${ext.usage}</strong></div>
-            ${ext.notes ? `<div class="ei-stat" style="width:100%;color:var(--gris);font-style:italic">📝 ${ext.notes}</div>` : ''}
+            <div class="ei-stat">Essence : <strong>${ext.essence}</strong></div>
+            <div class="ei-stat">Volume : <strong>${ext.volume} m³</strong></div>
+            <div class="ei-stat">Usage : <strong>${ext.usage}</strong></div>
+            ${ext.notes?`<div class="ei-stat" style="width:100%;font-style:italic">📝 ${ext.notes}</div>`:''}
           </div>
         </div>`).join('')}
     </div>`;
@@ -1602,7 +1493,7 @@ function afficherExtractions() {
 
 function supprimerExtraction(idx) {
   if (!confirm('Supprimer cette extraction ? Cette action est irréversible.')) return;
-  extractions.splice(idx, 1);
+  extractions.splice(idx,1);
   sauver();
   afficherExtractions();
 }
@@ -1611,8 +1502,7 @@ function supprimerExtraction(idx) {
 function afficherHistorique() {
   const container = document.getElementById('historique-container');
   if (lots.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">📂</div>
-      <p>Aucun lot enregistré pour l'instant.<br>Créez votre premier lot dans l'onglet "Nouveau lot".</p></div>`;
+    container.innerHTML = `<div class="empty-state"><div class="icon">📂</div><p>Aucun lot enregistré pour l'instant.<br>Créez votre premier lot dans l'onglet "Nouveau lot".</p></div>`;
     return;
   }
   container.innerHTML = lots.map((lot, idx) => `
@@ -1625,16 +1515,16 @@ function afficherHistorique() {
             &nbsp;·&nbsp; <span class="badge ${badgeClass(lot.usage)}">${lot.usage}</span>
           </div>
         </div>
-        <button class="btn btn-danger btn-sm" onclick="supprimerLot(${idx});event.stopPropagation()">🗑</button>
+        <button class="btn btn-danger btn-sm" onclick="supprimerLot(${idx});event.stopPropagation()">✕</button>
       </div>
       <div class="lot-card-stats">
-        <div class="lot-stat">🌲 <strong>${lot.essence}</strong></div>
-        <div class="lot-stat">📦 ${lot.nbGrumes} grume${lot.nbGrumes>1?'s':''}</div>
-        <div class="lot-stat">🗂 <strong>${lot.nbPlanches}</strong> planches</div>
-        <div class="lot-stat">📐 <strong>${lot.lineaire.toFixed(1)} m</strong> linéaires</div>
-        <div class="lot-stat">🪵 <strong>${lot.volUtile.toFixed(3)} m³</strong> utiles</div>
-        <div class="lot-stat">♻️ Déchets : ${lot.volDechets.toFixed(3)} m³</div>
-        <div class="lot-stat">⚙️ Ep. ${lot.epaisseur}mm · Δ ${lot.delta}%</div>
+        <div class="lot-stat">Essence : <strong>${lot.essence}</strong></div>
+        <div class="lot-stat">${lot.nbGrumes} grume${lot.nbGrumes>1?'s':''}</div>
+        <div class="lot-stat">Planches : <strong>${lot.nbPlanches}</strong></div>
+        <div class="lot-stat">Linéaire : <strong>${lot.lineaire.toFixed(1)} m</strong></div>
+        <div class="lot-stat">Volume utile : <strong>${lot.volUtile.toFixed(3)} m³</strong></div>
+        <div class="lot-stat" style="color:var(--cendre)">Déchets : ${lot.volDechets.toFixed(3)} m³</div>
+        <div class="lot-stat" style="color:var(--cendre)">Ep. ${lot.epaisseur}mm · Δ ${lot.delta}%</div>
       </div>
     </div>`).join('');
 }
@@ -1645,27 +1535,23 @@ function badgeClass(usage) {
   if (u.includes('intérieur')) return 'badge-int';
   if (u.includes('extérieur')) return 'badge-ext';
   if (u.includes('mob')) return 'badge-mob';
-  if (u.includes('struct') || u.includes('charp')) return 'badge-struct';
+  if (u.includes('struct')||u.includes('charp')) return 'badge-struct';
   return 'badge-autre';
 }
 
 function supprimerLot(idx) {
   if (!confirm('Supprimer ce lot ? Cette action est irréversible.')) return;
-  lots.splice(idx, 1);
+  lots.splice(idx,1);
   sauver();
   afficherHistorique();
 }
 
-// ═══════════ EXPORTS CSV ═══════════
+// ═══════════ EXPORTS ═══════════
 function exporterCSV() {
   if (lots.length === 0) { alert('Aucun lot à exporter.'); return; }
   const headers = ['Nom','Essence','Commune','Cause','Provenance','Année','Usage','Nb grumes','Vol. brut (m³)','Vol. utile (m³)','Vol. déchets (m³)','Nb planches','Linéaire (m)','Épaisseur (mm)','Delta (%)','Date'];
-  const rows = lots.map(l => [
-    l.nom, l.essence, l.commune, l.cause, l.provenance, l.annee, l.usage,
-    l.nbGrumes, l.volBrut.toFixed(3), l.volUtile.toFixed(3), l.volDechets.toFixed(3),
-    l.nbPlanches, l.lineaire.toFixed(2), l.epaisseur, l.delta, l.date
-  ]);
-  const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(';')).join('\n');
+  const rows = lots.map(l => [l.nom,l.essence,l.commune,l.cause,l.provenance,l.annee,l.usage,l.nbGrumes,l.volBrut.toFixed(3),l.volUtile.toFixed(3),l.volDechets.toFixed(3),l.nbPlanches,l.lineaire.toFixed(2),l.epaisseur,l.delta,l.date]);
+  const csv = [headers,...rows].map(r=>r.map(v=>`"${v}"`).join(';')).join('\n');
   telechargerCSV('\ufeff'+csv, `duramen_lots_${new Date().toISOString().slice(0,10)}.csv`);
 }
 
@@ -1673,11 +1559,8 @@ function exporterStockCSV() {
   const stock = getStockParEssence();
   if (Object.keys(stock).length === 0) { alert('Aucun stock à exporter.'); return; }
   const headers = ['Essence','m³ entrés','m³ sortis','m³ disponibles','Nb lots','Nb grumes'];
-  const rows = Object.keys(stock).map(e => [
-    e, stock[e].entree.toFixed(3), stock[e].sorti.toFixed(3), stock[e].dispo.toFixed(3),
-    stock[e].nbLots, stock[e].nbGrumes
-  ]);
-  const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(';')).join('\n');
+  const rows = Object.keys(stock).map(e=>[e,stock[e].entree.toFixed(3),stock[e].sorti.toFixed(3),stock[e].dispo.toFixed(3),stock[e].nbLots,stock[e].nbGrumes]);
+  const csv = [headers,...rows].map(r=>r.map(v=>`"${v}"`).join(';')).join('\n');
   telechargerCSV('\ufeff'+csv, `duramen_stock_${new Date().toISOString().slice(0,10)}.csv`);
 }
 
@@ -1692,8 +1575,8 @@ function telechargerCSV(content, filename) {
 // ═══════════ HEADER STATS ═══════════
 function mettreAJourHeaderStats() {
   const stock = getStockParEssence();
-  const totalDispo  = Object.values(stock).reduce((s,e) => s+e.dispo, 0);
-  const nbEssences  = Object.keys(stock).length;
+  const totalDispo = Object.values(stock).reduce((s,e)=>s+e.dispo,0);
+  const nbEssences = Object.keys(stock).length;
   document.getElementById('hs-vol').textContent      = totalDispo.toFixed(2);
   document.getElementById('hs-lots').textContent     = lots.length;
   document.getElementById('hs-essences').textContent = nbEssences;
@@ -1702,62 +1585,14 @@ function mettreAJourHeaderStats() {
 // ═══════════ INIT ═══════════
 mettreAJourHeaderStats();
 afficherHistorique();
-</script>
-<!-- ─── BANNIÈRE INSTALLATION PWA ─── -->
-<div id="pwa-banner">
-  <p>🌳 Installez <strong>DURAMEN</strong> sur votre téléphone pour l'utiliser hors ligne !</p>
-  <div class="pwa-btns">
-    <button id="pwa-install-btn">📲 Installer</button>
-    <button id="pwa-dismiss-btn">Plus tard</button>
-  </div>
-</div>
 
-<script>
-// ─── SERVICE WORKER ───
+// ═══════════ PWA — Service Worker ═══════════
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('SW enregistré :', reg.scope))
-      .catch(err => console.warn('SW erreur :', err));
+    navigator.serviceWorker.register('sw.js')
+      .catch(err => console.warn('SW non enregistré :', err));
   });
 }
-
-// ─── PWA INSTALL PROMPT ───
-let deferredPrompt = null;
-const banner = document.getElementById('pwa-banner');
-const installBtn = document.getElementById('pwa-install-btn');
-const dismissBtn = document.getElementById('pwa-dismiss-btn');
-
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  // Afficher la bannière seulement si pas déjà installé ni ignoré
-  if (!localStorage.getItem('pwa-dismissed')) {
-    setTimeout(() => banner.classList.add('show'), 2000);
-  }
-});
-
-installBtn.addEventListener('click', async () => {
-  banner.classList.remove('show');
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log('Choix installation :', outcome);
-    deferredPrompt = null;
-  }
-});
-
-dismissBtn.addEventListener('click', () => {
-  banner.classList.remove('show');
-  localStorage.setItem('pwa-dismissed', '1');
-});
-
-window.addEventListener('appinstalled', () => {
-  banner.classList.remove('show');
-  deferredPrompt = null;
-  console.log('DURAMEN installé avec succès');
-});
 </script>
-
 </body>
 </html>
